@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://nl-sites-auditoria-2026.jammy-sole-8972.chatgpt.site/sitemap.xml
