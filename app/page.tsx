@@ -1,21 +1,31 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import Image from "next/image";
+import { ArrowUpRight, ArrowDown, Check, Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const paymentUrl = "https://mpago.la/26Q1m2a";
 
-function Brand() {
-  return <span className="brand"><Image src="/nl-symbol.svg" width={44} height={44} alt="" /><span className="brand-name"><strong>NL</strong><span>SITES</span></span></span>;
+function Brand({ large = false }: { large?: boolean }) {
+  return <span className={large ? "identity identity-large" : "identity"} aria-label="NL Sites">
+    <svg viewBox="0 0 103 64" fill="currentColor" aria-hidden="true">
+      <path d="M4 58V9h12l25 29V9h13v49H42L17 29v29H4Z" />
+      <path d="M63 9h13v36h24v13H63V9Z" />
+    </svg>
+    {!large && <span className="identity-word">sites<span className="identity-point">.</span></span>}
+  </span>;
 }
 
 export default function Home() {
   const [checked, setChecked] = useState(false);
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
+  const [demo, setDemo] = useState("after");
+  const [openStep, setOpenStep] = useState<number | null>(0);
+  const improved = demo === "after";
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -48,43 +58,61 @@ export default function Home() {
     }
   }
 
+  const steps = [
+    { title: "Um olhar atento.", text: "Revisamos a página inicial: mensagem, leitura no celular e caminho até o contato. A checagem automática ajuda a encontrar os pontos que precisam ser conferidos." },
+    { title: "Três ajustes bem escolhidos.", text: "Combinamos até três correções possíveis na sua página. Você aprova o escopo e fornece o acesso necessário antes de qualquer alteração." },
+    { title: "Você vê o que mudou.", text: "Aplicamos os ajustes aprovados e entregamos um resumo das alterações. O foco é melhorar a página que você já tem." },
+  ];
+
   return <main id="inicio">
-    <header className="site-header shell">
-      <a href="#inicio" aria-label="NL Sites, início"><Brand /></a>
-      <a className="header-link" href="#pedido">Solicitar revisão <span aria-hidden="true">↗</span></a>
+    <header className="masthead container-width">
+      <a className="home-link" href="#inicio" aria-label="NL Sites, início"><Brand /></a>
+      <nav aria-label="Navegação principal">
+        <a href="#demonstracao">O olhar da NL</a>
+        <a href="#servico">O serviço</a>
+      </nav>
+      <a className="nav-cta" href="#pedido">Vamos conversar <ArrowUpRight size={17} aria-hidden="true" /></a>
     </header>
 
-    <section className="hero shell" aria-labelledby="hero-title">
-      <div className="hero-copy">
-        <div className="edition"><span className="edition-dot" /> SERVIÇO REMOTO · BRASIL</div>
-        <h1 id="hero-title">Seu site pode <em>explicar melhor</em> o que você vende.</h1>
-        <p>Revisamos a página inicial do seu negócio e executamos até três ajustes combinados. Um serviço direto, com escopo claro e preço fechado.</p>
-        <a className="text-link" href="#processo">Veja o que está incluído <span aria-hidden="true">↗</span></a>
+    <section className="opening container-width" aria-labelledby="main-title">
+      <div className="opening-caption"><span>REVISÃO & AJUSTES DE SITES</span><span>INDEPENDENTE. DIGITAL. BRASIL.</span></div>
+      <h1 id="main-title">Pequenos ajustes.<br /><span>Outra <em>impressão.</em></span><span className="title-dot" aria-hidden="true">✳</span></h1>
+      <div className="opening-bottom">
+        <a href="#demonstracao" className="scroll-link"><span className="scroll-icon"><ArrowDown size={20} aria-hidden="true" /></span>É nos detalhes que<br />a diferença aparece.</a>
+        <div className="opening-description"><p>Seu negócio já tem um site.<br />A NL cuida do que pode ficar melhor.</p><a href="#pedido" className="action-link">Revisar meu site <ArrowUpRight size={20} aria-hidden="true" /></a></div>
+        <div className="opening-price"><span>UMA PÁGINA. ATÉ 3 AJUSTES.</span><strong>R$ 250<span> / serviço</span></strong></div>
       </div>
-      <div className="hero-graphic" aria-hidden="true">
-        <div className="graphic-top"><span>NL / ANÁLISE DE PÁGINA</span><span>01 — 03</span></div>
-        <div className="browser-frame">
-          <div className="browser-bar"><i /><i /><i /><span>seunegocio.com.br</span></div>
-          <div className="browser-content"><div className="mock-line short"/><div className="mock-line wide"/><div className="mock-line medium"/><div className="mock-block"/><span className="pointer pointer-one">01 <b>Título</b></span><span className="pointer pointer-two">02 <b>Contato</b></span><span className="pointer pointer-three">03 <b>Celular</b></span></div>
+    </section>
+
+    <section className="work-section" id="demonstracao">
+      <div className="container-width">
+        <div className="section-top"><span className="eyebrow">01 — O OLHAR DA NL</span><span className="work-disclaimer">Demonstração, não projeto de cliente.</span></div>
+        <div className="work-heading"><h2>Menos ruído.<br /><em>Mais clareza.</em></h2><p>Um título que explica. Um texto que dá para ler.<br className="desktop-break" /> Um caminho fácil até o contato.</p></div>
+        <div className="case-shell">
+          <div className="case-toolbar"><span className="case-name"><span className="case-mini-mark">f.</span>Forma Contábil <span className="case-fiction">/ marca fictícia</span></span><ToggleGroup type="single" value={demo} onValueChange={(value) => { if (value) setDemo(value); }} aria-label="Comparar a demonstração" className="comparison-tabs"><ToggleGroupItem value="before">Original</ToggleGroupItem><ToggleGroupItem value="after">Com ajustes</ToggleGroupItem></ToggleGroup></div>
+          <div className={improved ? "demo-page is-improved" : "demo-page"} aria-live="polite">
+            <div className="demo-nav"><span className="demo-logo">forma<span>®</span></span><span>CONTABILIDADE CONSULTIVA</span><span className="demo-menu" aria-hidden="true">MENU <Plus size={14} /></span></div>
+            <div className="demo-body">
+              <div className="demo-copy"><span className="demo-kicker">PARA QUEM EMPREENDE</span><h3>{improved ? <>Sua empresa cresce.<br />A gente cuida<br /><em>dos números.</em></> : <>Soluções completas<br />para o sucesso<br /><em>do seu negócio.</em></>}</h3><p>{improved ? "Contabilidade para pequenas empresas. Organize seus impostos e entenda os números do seu negócio." : "Oferecemos soluções personalizadas com excelência e compromisso para atender às suas necessidades."}</p><span className={improved ? "demo-contact" : "demo-contact demo-contact-muted"}>{improved ? "Converse com um contador" : "Saiba mais"}<ArrowUpRight size={17} aria-hidden="true" /></span></div>
+              <div className="demo-side"><span className="demo-side-label">UM NEGÓCIO.<br />NOVAS POSSIBILIDADES.</span><span className="demo-letter" aria-hidden="true">f<span>.</span></span><span className="demo-side-bottom">FORMA CONTÁBIL<br />CLAREZA PARA DECIDIR.</span></div>
+            </div>
+            <div className="demo-bottom"><span>CONTABILIDADE · PLANEJAMENTO · GESTÃO</span><span>EXEMPLO ILUSTRATIVO</span></div>
+          </div>
         </div>
-        <div className="graphic-bottom"><span>REVISÃO + CORREÇÕES</span><strong>R$ 250</strong></div>
+        <div className="case-notes"><div><span>01</span><p><strong>A mensagem</strong>Um título que diz o que a empresa faz.</p></div><div><span>02</span><p><strong>A leitura</strong>Texto com contraste e tamanho confortáveis.</p></div><div><span>03</span><p><strong>O próximo passo</strong>Uma chamada clara para entrar em contato.</p></div></div>
       </div>
     </section>
 
-    <section className="offer-band"><div className="shell offer-inner"><span>UMA PÁGINA</span><span>ATÉ TRÊS AJUSTES</span><span>RESUMO DO QUE MUDOU</span><strong>R$ 250</strong></div></section>
-
-    <section className="process shell" id="processo">
-      <div className="section-heading"><span className="index">01 / SERVIÇO</span><h2>O que fazemos</h2><p>Você envia o endereço da página. Conferimos conteúdo, apresentação no celular e caminho até o contato. Depois alinhamos os pontos que podem ser corrigidos.</p></div>
-      <div className="steps"><article><span>01</span><h3>Revisão da página</h3><p>Identificamos problemas visíveis na página inicial e priorizamos o que faz sentido para o seu negócio.</p></article><article><span>02</span><h3>Escopo combinado</h3><p>Confirmamos até três ajustes antes de começar. A execução depende do acesso necessário ao site.</p></article><article><span>03</span><h3>Entrega registrada</h3><p>Aplicamos os ajustes aprovados e enviamos um resumo simples do que foi alterado.</p></article></div>
+    <section className="service-section container-width" id="servico">
+      <div className="service-intro"><span className="eyebrow">02 — O SERVIÇO</span><h2>Não precisa<br />começar <br /><em>do zero.</em></h2><p>A NL Sites é um serviço independente de revisão e ajustes para pequenos negócios. Um olhar de fora para melhorar o que você já colocou no ar.</p></div>
+      <div className="service-right"><div className="scope-line"><span>O QUE ESTÁ INCLUÍDO</span><span>01 PÁGINA / 03 AJUSTES</span></div><div className="service-steps">{steps.map((step, index) => <article className={openStep === index ? "service-step is-open" : "service-step"} key={step.title}><h3><button type="button" aria-expanded={openStep === index} aria-controls={"step-" + index} onClick={() => setOpenStep(openStep === index ? null : index)}><span className="step-number">0{index + 1}</span><span>{step.title}</span>{openStep === index ? <Minus size={20} /> : <Plus size={20} />}</button></h3><div id={"step-" + index} hidden={openStep !== index}><p>{step.text}</p></div></article>)}</div><div className="scope-note"><Check size={18} aria-hidden="true" /><p>Escopo combinado antes da execução.<br />Sem mensalidade. Sem pacote de serviços escondido.</p></div></div>
     </section>
 
-    <section className="proof-section"><div className="shell proof-grid"><div className="proof-copy"><span className="index">UM EXEMPLO REALISTA</span><h2>Veja o tipo de revisão que você recebe.</h2><p>O relatório aponta o problema, explica por que ele importa e sugere uma correção objetiva. Este é um exemplo demonstrativo, não um trabalho atribuído a um cliente.</p></div><div className="sample-report"><div className="sample-top"><Brand /><span>AMOSTRA / 01</span></div><div className="sample-title"><span>REVISÃO DA PÁGINA INICIAL</span><h3>O contato está difícil de encontrar.</h3></div><div className="sample-row"><span>O QUE VIMOS</span><p>O botão de contato aparece apenas no fim da página. No celular, exige várias rolagens.</p></div><div className="sample-row"><span>AJUSTE SUGERIDO</span><p>Adicionar uma chamada para contato perto da apresentação do serviço e conferir a leitura no celular.</p></div><div className="sample-foot"><span>EXEMPLO DEMONSTRATIVO</span><span>NL / SITES</span></div></div></div></section>
+    <section className="request-section" id="pedido"><div className="container-width request-grid">
+      <div className="request-copy"><span className="eyebrow">03 — SEU SITE, AGORA</span><h2>Vamos olhar<br /><em>de perto?</em></h2><p>Envie o endereço do seu site e um e-mail de contato para iniciar o pedido.</p><div className="price-block"><strong>R$ 250</strong><span>Revisão da página inicial<br />+ até três ajustes combinados</span></div><p className="request-note">Após o envio, você recebe o link do Mercado Pago para confirmar a contratação.</p></div>
+      <div className="request-form">{state === "sent" ? <div className="success" role="status"><span className="success-check"><Check size={25} /></span><h3>Recebemos seu pedido.</h3><p>Conclua o pagamento de R$ 250 pelo Mercado Pago para confirmar a contratação. O vendedor aparece como <strong>NL STORE</strong>.</p><Button asChild className="submit-button"><a href={paymentUrl} target="_blank" rel="noopener noreferrer">Ir para o pagamento <ArrowUpRight size={19} /></a></Button><p className="form-note">A execução depende do pagamento, do escopo e do acesso necessário. Se não pudermos realizar o pedido nesse escopo, combinaremos o estorno.</p></div> : <form onSubmit={submit}><div className="form-row"><label htmlFor="business"><span>01</span> Nome do negócio</label><Input id="business" name="business" required maxLength={100} autoComplete="organization" placeholder="Como sua empresa se chama?" /></div><div className="form-row"><label htmlFor="website"><span>02</span> Endereço do site</label><Input id="website" name="website" required type="url" maxLength={300} placeholder="https://seusite.com.br" /></div><div className="form-row"><label htmlFor="email"><span>03</span> Seu e-mail</label><Input id="email" name="email" required type="email" maxLength={200} autoComplete="email" placeholder="voce@empresa.com.br" /></div><div className="trap" aria-hidden="true"><label htmlFor="extra">Deixe em branco</label><Input id="extra" name="extra" tabIndex={-1} autoComplete="off" /></div><label className="agree" htmlFor="agree"><Checkbox id="agree" checked={checked} onCheckedChange={(value) => setChecked(value === true)} /><span>Entendi que a revisão começa com uma checagem automática e que os ajustes serão confirmados antes da execução.</span></label>{error && <p className="error" role="alert">{error}</p>}<Button type="submit" disabled={!checked || state === "sending"} className="submit-button">{state === "sending" ? "Enviando…" : "Enviar meu site"}<ArrowUpRight size={20} aria-hidden="true" /></Button><p className="form-note">Seus dados serão usados para avaliar e atender este pedido.</p></form>}</div>
+    </div></section>
 
-    <section className="request-section" id="pedido"><div className="shell request-grid"><div className="request-copy"><span className="index">02 / PEDIDO</span><h2>Conte sobre o seu site.</h2><p>Preencha os dados para começarmos a avaliação. Após enviar, você recebe o link de pagamento seguro pelo Mercado Pago.</p><div className="price-note"><span>REVISÃO + ATÉ 3 AJUSTES</span><strong>R$ 250</strong></div></div>
-      <div className="form-card">
-        {state === "sent" ? <div className="success" role="status"><span className="success-icon">✓</span><h3>Pedido recebido.</h3><p>Para confirmar a contratação, conclua o pagamento de R$ 250 no Mercado Pago. No checkout, o vendedor aparece como <strong>NL STORE</strong>.</p><Button asChild className="main-button"><a href={paymentUrl} target="_blank" rel="noopener noreferrer">Ir para o pagamento <span aria-hidden="true">↗</span></a></Button><p className="fine">A execução depende da confirmação do pagamento, do escopo e do acesso necessário. Se não pudermos realizar o pedido nesse escopo, combinaremos o estorno.</p></div> : <><div className="form-heading"><span>FORMULÁRIO DE SOLICITAÇÃO</span><h3>Solicitar revisão</h3></div><form onSubmit={submit}><label htmlFor="business">Nome do negócio</label><Input id="business" name="business" required maxLength={100} autoComplete="organization" placeholder="Ex.: Café da Praça" /><label htmlFor="website">Endereço do site</label><Input id="website" name="website" required type="url" maxLength={300} placeholder="https://seusite.com.br" /><label htmlFor="email">E-mail para retorno</label><Input id="email" name="email" required type="email" maxLength={200} autoComplete="email" placeholder="voce@empresa.com.br" /><div className="trap" aria-hidden="true"><label htmlFor="extra">Deixe em branco</label><Input id="extra" name="extra" tabIndex={-1} autoComplete="off" /></div><label className="agree" htmlFor="agree"><Checkbox id="agree" checked={checked} onCheckedChange={(value) => setChecked(value === true)} /><span>Entendi que o diagnóstico inicial usa uma checagem automática e que os ajustes serão confirmados antes da execução.</span></label>{error && <p className="error" role="alert">{error}</p>}<Button type="submit" disabled={!checked || state === "sending"} className="main-button">{state === "sending" ? "Enviando…" : "Enviar solicitação"} <span aria-hidden="true">↗</span></Button></form></>}
-      </div></div></section>
-
-    <footer className="site-footer shell"><Brand /><div><p>Atendimento remoto no Brasil. Pagamentos processados pelo Mercado Pago sob o nome NL STORE. Resultados em buscas ou vendas não são garantidos.</p><p>Dados enviados são usados para avaliar e atender o pedido. Você pode solicitar informações sobre seus dados respondendo ao nosso contato.</p></div><a href="#inicio">Voltar ao topo ↑</a></footer>
+    <footer className="footer container-width"><div className="footer-top"><a href="#inicio" aria-label="NL Sites, início"><Brand /></a><p>Um olhar atento.<br />Uma presença melhor.</p><a className="back-top" href="#inicio">De volta ao início <ArrowUpRight size={18} /></a></div><div className="footer-bottom"><span>NL SITES © 2026</span><p>Atendimento remoto no Brasil. Pagamento via Mercado Pago, sob o nome NL STORE. Não há garantia de resultados em vendas ou buscas. Para tratar dos seus dados, responda ao contato sobre o pedido.</p></div></footer>
   </main>;
 }
