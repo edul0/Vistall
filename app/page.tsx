@@ -71,6 +71,7 @@ export default function Home() {
         <a href="#demonstracao">O olhar da NL</a>
         <a href="#servico">O serviço</a>
         <a href="/guia">Guia prático</a>
+        <a href="/avaliar">Avalie seu site</a>
       </nav>
       <a className="nav-cta" href="#pedido">Vamos conversar <ArrowUpRight size={17} aria-hidden="true" /></a>
     </header>

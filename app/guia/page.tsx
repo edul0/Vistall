@@ -34,7 +34,7 @@ export default function GuidePage() {
       <div className="guide-hero"><p className="admin-overline">GUIA PRÁTICO / PEQUENOS NEGÓCIOS</p><h1>Seu site já existe.<br /><em>O que ajustar primeiro?</em></h1><p>Três verificações que você pode fazer hoje na página inicial. Elas ajudam a encontrar pontos de melhoria sem depender de uma análise técnica complexa.</p></div>
       <div className="guide-index"><span>LEITURA RÁPIDA</span><span>03 PONTOS PARA CONFERIR</span></div>
       <div className="guide-points">{points.map((point) => <section className="guide-point" key={point.number}><span className="guide-number">{point.number}</span><div><h2>{point.title}</h2><p>{point.body}</p><div className="guide-example"><span>EXEMPLO PRÁTICO</span><p>{point.example}</p></div></div></section>)}</div>
-      <section className="guide-end"><span className="admin-overline">PRÓXIMO PASSO</span><h2>Quer um olhar de fora<br /><em>na sua página?</em></h2><p>A NL Sites revisa a página inicial do seu negócio e combina até três ajustes possíveis antes de alterar qualquer coisa. Serviço pontual de R$ 250.</p><a href="/#pedido">Enviar meu site <ArrowUpRight size={19} aria-hidden="true" /></a></section>
+      <section className="guide-end"><span className="admin-overline">PRÓXIMO PASSO</span><h2>Quer um olhar de fora<br /><em>na sua página?</em></h2><p>Faça primeiro uma autoavaliação gratuita de cinco perguntas. Se quiser ajuda na execução, a NL Sites combina até três ajustes possíveis na página inicial por R$ 250.</p><a href="/avaliar">Fazer a autoavaliação <ArrowUpRight size={19} aria-hidden="true" /></a></section>
       <footer className="guide-footer"><a href="/">NL Sites</a><span>Revisão e ajustes de sites · Brasil</span></footer>
     </main>
   );
