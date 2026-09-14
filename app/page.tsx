@@ -93,13 +93,14 @@ export default function Home() {
           <div className={improved ? "demo-page is-improved" : "demo-page"} aria-live="polite">
             <div className="demo-nav"><span className="demo-logo">forma<span>®</span></span><span>CONTABILIDADE CONSULTIVA</span><span className="demo-menu" aria-hidden="true">MENU <Plus size={14} /></span></div>
             <div className="demo-body">
-              <div className="demo-copy"><span className="demo-kicker">PARA QUEM EMPREENDE</span><h3>{improved ? <>Sua empresa cresce.<br />A gente cuida<br /><em>dos números.</em></> : <>Soluções completas<br />para o sucesso<br /><em>do seu negócio.</em></>}</h3><p>{improved ? "Contabilidade para pequenas empresas. Organize seus impostos e entenda os números do seu negócio." : "Oferecemos soluções personalizadas com excelência e compromisso para atender às suas necessidades."}</p><span className={improved ? "demo-contact" : "demo-contact demo-contact-muted"}>{improved ? "Converse com um contador" : "Saiba mais"}<ArrowUpRight size={17} aria-hidden="true" /></span></div>
+              <div className="demo-copy"><span className="demo-kicker">PARA QUEM EMPREENDE</span><h3>Sua empresa cresce. <br />A gente cuida <br /><em>dos números.</em></h3><p>Contabilidade para pequenas empresas. Organize seus impostos e entenda os números do seu negócio.</p><span className={improved ? "demo-contact" : "demo-contact demo-contact-muted"}>Converse com um contador<ArrowUpRight size={17} aria-hidden="true" /></span></div>
               <div className="demo-side"><span className="demo-side-label">UM NEGÓCIO.<br />NOVAS POSSIBILIDADES.</span><span className="demo-letter" aria-hidden="true">f<span>.</span></span><span className="demo-side-bottom">FORMA CONTÁBIL<br />CLAREZA PARA DECIDIR.</span></div>
             </div>
             <div className="demo-bottom"><span>CONTABILIDADE · PLANEJAMENTO · GESTÃO</span><span>EXEMPLO ILUSTRATIVO</span></div>
           </div>
         </div>
-        <div className="case-notes"><div><span>01</span><p><strong>A mensagem</strong>Um título que diz o que a empresa faz.</p></div><div><span>02</span><p><strong>A leitura</strong>Texto com contraste e tamanho confortáveis.</p></div><div><span>03</span><p><strong>O próximo passo</strong>Uma chamada clara para entrar em contato.</p></div></div>
+        <div className="case-notes" aria-live="polite"><div><span>01</span><p><strong>Hierarquia visual</strong>{improved ? "Título em destaque e composição organizada em duas áreas." : "Título pequeno, centralizado e sem destaque sobre o restante."}</p></div><div><span>02</span><p><strong>Leitura</strong>{improved ? "Texto maior, mais contraste e espaço entre os elementos." : "Texto miúdo e pouco espaço para separar as informações."}</p></div><div><span>03</span><p><strong>Contato</strong>{improved ? "Botão com área maior e contraste para orientar o próximo passo." : "Link discreto, com pouca diferenciação do texto."}</p></div></div>
+        <p className="comparison-caption">O texto é o mesmo nas duas versões. Compare a apresentação, a leitura e o destaque do contato. Exemplo demonstrativo; os ajustes de cada site são combinados após a revisão.</p>
       </div>
     </section>
 
