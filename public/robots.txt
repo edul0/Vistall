@@ -3,4 +3,5 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://nl-sites-auditoria-2026.jammy-sole-8972.chatgpt.site/sitemap.xml
+Sitemap: https://vistal.nlsites01.workers.dev/sitemap.xml
+

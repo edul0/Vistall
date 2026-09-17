@@ -1,0 +1,1778 @@
+﻿<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  main > :first-child {
+    margin-top: 0 !important;
+  }
+  main > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keyframes & Ambient Animations */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 0px rgba(230, 82, 42, 0));
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px rgba(230, 82, 42, 0.6));
+  }
+}
+
+@keyframes dotScaleIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+@keyframes fadeInUpLetters {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    border-color: rgba(230, 82, 42, 0.4);
+    box-shadow: 0 0 15px rgba(230, 82, 42, 0.15);
+  }
+  50% {
+    border-color: rgba(230, 82, 42, 0.8);
+    box-shadow: 0 0 25px rgba(230, 82, 42, 0.3);
+  }
+}
+
+.animate-spin-editorial {
+  animation: spinSlow 24s linear infinite;
+  transform-origin: center center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+.animate-spin-editorial:hover {
+  animation-duration: 6s;
+}
+
+.brand-dot-pulse {
+  display: inline-block;
+  animation: subtlePulse 3.2s ease-in-out infinite;
+}
+
+.float-indicator {
+  animation: gentleBounce 2.4s ease-in-out infinite;
+}
+
+/* Reveal on Scroll (Staggered fade-up) */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Accordion Smooth Height Handling */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 1;
+}
+.accordion-content.collapsed {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+.accordion-content-inner {
+  overflow: hidden;
+}
+
+/* Splash Screen Transitions & Cinematic Curtain */
+#splash-overlay {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s;
+  will-change: opacity, transform;
+}
+#splash-overlay.splash-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  visibility: hidden;
+}
+#splash-progress-bar {
+  width: 0%;
+  transition: width 0.15s ease-out;
+}
+
+.splash-title-enter {
+  opacity: 0;
+  animation: fadeInUpLetters 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.splash-subtitle-enter {
+  opacity: 0;
+  animation: fadeInUpLetters 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+/* Highlight / Comparison Target Effects */
+.pillar-highlight-1 {
+  animation: cardGlow 1.8s ease-in-out 2;
+}
+
+/* Button Elevation & Magnetic Hover Feel */
+.btn-elevate {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
+}
+.btn-elevate:hover {
+  transform: translateY(-2px) scale(1.015);
+}
+.btn-elevate:active {
+  transform: translateY(0) scale(0.985);
+}
+
+/* Magnetic Spotlight Pointer Light Effect */
+#magnetic-mouse-spotlight {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 82, 42, 0.09) 0%, rgba(201, 235, 207, 0.06) 38%, rgba(250, 249, 247, 0) 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s ease;
+  z-index: 5;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+/* Interactive Card Shimmer / Sheen on Mouse Movement */
+.service-card-interactive {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+}
+.service-card-interactive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(230, 82, 42, 0.09), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.service-card-interactive:hover::before {
+  opacity: 1;
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-spin-editorial,
+  .brand-dot-pulse,
+  .float-indicator {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #magnetic-mouse-spotlight {
+    display: none !important;
+  }
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container-lowest":"#ffffff","inverse-surface":"#2f3130","on-secondary-fixed":"#042110","secondary":"#48654f","inverse-primary":"#c7c6c3","on-surface":"#1a1c1b","primary-fixed-dim":"#c7c6c3","on-secondary-container":"#4e6b55","surface-variant":"#e3e2e0","on-primary-fixed-variant":"#464744","background":"#faf9f7","surface-container-highest":"#e3e2e0","tertiary-fixed":"#ffdbd1","outline-variant":"#c6c7c1","on-background":"#1a1c1b","surface-tint":"#5e5e5c","inverse-on-surface":"#f1f1ef","error":"#ba1a1a","surface-container":"#efeeec","on-error-container":"#93000a","on-secondary":"#ffffff","secondary-container":"#c9ebcf","surface":"#faf9f7","on-primary":"#ffffff","on-tertiary-container":"#e6522a","error-container":"#ffdad6","on-primary-fixed":"#1b1c1a","secondary-fixed-dim":"#aecfb4","tertiary":"#000000","secondary-fixed":"#c9ebcf","tertiary-container":"#3c0800","on-surface-variant":"#454743","on-secondary-fixed-variant":"#304d39","on-primary-container":"#848481","on-tertiary":"#ffffff","on-tertiary-fixed-variant":"#881f00","primary-container":"#1b1c1a","surface-bright":"#faf9f7","surface-container-low":"#f4f3f1","primary":"#000000","primary-fixed":"#e4e2de","surface-container-high":"#e9e8e6","tertiary-fixed-dim":"#ffb4a1","on-tertiary-fixed":"#3c0800","outline":"#767872","surface-dim":"#dadad8","on-error":"#ffffff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin":"1.25rem","space-3xl":"6rem","space-xs":"0.25rem","space-xl":"2.5rem","gutter":"1.5rem","gutter-desktop":"2.5rem","space-lg":"1.5rem","space-md":"1rem","space-2xl":"4rem","margin-desktop":"4rem","space-sm":"0.5rem"},fontFamily:{"price-display":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-lg-italic":["Playfair Display"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"numeral-badge":["Plus Jakarta Sans"],"label-caps":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"display-hero-italic":["Playfair Display"],"headline-lg-mobile":["Plus Jakarta Sans"]},fontSize:{"price-display":["44px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg":["56px",{"lineHeight":"60px","letterSpacing":"-0.03em","fontWeight":"600"}],"headline-lg-italic":["56px",{"lineHeight":"60px","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-sm":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"500"}],"headline-md":["32px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"600"}],"numeral-badge":["12px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"500"}],"label-caps":["11px",{"lineHeight":"14px","letterSpacing":"0.12em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"display-hero":["96px",{"lineHeight":"96px","letterSpacing":"-0.04em","fontWeight":"600"}],"display-hero-italic":["96px",{"lineHeight":"96px","letterSpacing":"-0.02em","fontWeight":"400"}],"headline-lg-mobile":["38px",{"lineHeight":"42px","letterSpacing":"-0.03em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed relative overflow-x-hidden">
+<!-- ELEGANT INITIAL PRESENTATION / SPLASH INTRO SCREEN (z-50) -->
+<div class="fixed inset-0 z-50 flex flex-col justify-between items-center bg-[#faf9f7] text-primary p-6 md:p-12 select-none cursor-pointer overflow-hidden border-b border-outline-variant/30 shadow-2xl" id="splash-overlay" onclick="dismissSplash()" title="Clique para entrar imediatamente">
+<!-- Subtle Background Shader / Noise within Splash -->
+<!-- STITCH_SHADER_START:ANIMATION_17 class="absolute inset-0 w-full h-full pointer-events-none opacity-40" -->
+<div class="absolute inset-0 w-full h-full pointer-events-none opacity-40" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_17" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_17');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+float snoise(vec2 v) {
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod289(i);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+  m = m*m;
+  m = m*m;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy / u_resolution.xy;
+    vec2 mouse = u_mouse.xy / u_resolution.xy;
+    
+    vec2 pos = st;
+    float aspect = u_resolution.x / u_resolution.y;
+    pos.x *= aspect;
+    vec2 mPos = mouse;
+    mPos.x *= aspect;
+
+    float dist = distance(pos, mPos);
+    float mouseWave = smoothstep(0.6, 0.0, dist);
+    
+    float t = u_time * 0.2;
+    vec2 dir = normalize(pos - mPos + vec2(0.001, 0.001));
+    vec2 displacement = dir * mouseWave * 0.15;
+    
+    vec2 p1 = pos * 1.6 + displacement + vec2(t * 0.25, -t * 0.15);
+    vec2 p2 = pos * 2.2 - displacement * 1.2 + vec2(-t * 0.2, t * 0.25);
+    float n1 = snoise(p1);
+    float n2 = snoise(p2);
+    float fluidField = (n1 * 0.6 + n2 * 0.4) * 0.5 + 0.5;
+    
+    // Editorial warm paper & linen
+    vec3 cPaper = vec3(0.982, 0.978, 0.970);      // #faf9f7
+    vec3 cLinen = vec3(0.940, 0.932, 0.915);      // Soft linen
+    vec3 cWarmAura = vec3(0.965, 0.925, 0.880);   // Warm tone
+    vec3 cTerracotta = vec3(0.85, 0.32, 0.15);    // Vistal terracotta #c84d28
+    vec3 cAmberLight = vec3(0.93, 0.65, 0.42);
+
+    vec3 color = mix(cPaper, cLinen, fluidField * 0.7);
+    color = mix(color, cWarmAura, smoothstep(0.4, 0.85, fluidField) * 0.6);
+
+    float ripple = sin(dist * 25.0 - u_time * 2.5) * 0.5 + 0.5;
+    float rippleMask = smoothstep(0.4, 0.05, dist) * ripple;
+    
+    color = mix(color, cAmberLight, mouseWave * 0.2);
+    color = mix(color, cTerracotta, (mouseWave * mouseWave) * 0.12 + rippleMask * 0.06);
+
+    float grain = (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.02;
+    color += grain;
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_17 -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#faf9f7]/70 via-[#faf9f7]/85 to-[#faf9f7]/95 pointer-events-none"></div>
+<!-- Splash Top Metadata -->
+<div class="relative z-10 w-full max-w-5xl flex items-center justify-between text-on-surface-variant font-label-caps text-label-caps tracking-widest uppercase">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-on-tertiary-container brand-dot-pulse"></span>
+<span>Apresentação Editorial • Vistal</span>
+</div>
+<div class="hidden sm:flex items-center gap-1.5 text-on-surface-variant font-numeral-badge text-numeral-badge">
+<span>Brasil • 2026</span>
+</div>
+</div>
+<!-- Splash Center Showcase -->
+<div class="relative z-10 my-auto flex flex-col items-center text-center max-w-3xl space-y-6">
+<!-- Asterisk Símbolo -->
+<div class="relative mb-2">
+<svg class="w-16 h-16 md:w-20 md:h-20 text-on-tertiary-container animate-spin-editorial drop-shadow-md" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4.5" viewbox="0 0 100 100">
+<line x1="50" x2="50" y1="10" y2="90"></line>
+<line x1="10" x2="90" y1="50" y2="50"></line>
+<line x1="21.7" x2="78.3" y1="21.7" y2="78.3"></line>
+<line x1="21.7" x2="78.3" y1="78.3" y2="21.7"></line>
+</svg>
+</div>
+<!-- Main Title -->
+<div class="splash-title-enter">
+<div class="flex items-baseline justify-center tracking-tight">
+<span class="font-display-hero text-6xl md:text-8xl lg:text-9xl text-primary font-bold">Vistal</span>
+<span class="font-display-hero text-6xl md:text-8xl lg:text-9xl text-on-tertiary-container ml-1 brand-dot-pulse">.</span>
+</div>
+</div>
+<!-- Slogan Editorial -->
+<div class="splash-subtitle-enter space-y-3">
+<p class="font-headline-lg-italic text-2xl md:text-4xl text-on-surface italic tracking-tight">
+        Um olhar atento. Uma presença melhor.
+      </p>
+<p class="font-body-md text-on-surface-variant max-w-lg mx-auto text-sm md:text-base leading-relaxed">
+        Revisão cirúrgica de websites, novas plataformas sob medida e sistemas web ágeis para pequenos negócios independentes.
+      </p>
+</div>
+<!-- Call to action button & indicator -->
+<div class="pt-6 flex flex-col items-center gap-4">
+<button class="btn-elevate inline-flex items-center gap-2 bg-primary text-on-primary hover:bg-inverse-surface px-8 py-3.5 rounded font-label-caps text-xs uppercase tracking-widest shadow-md" onclick="event.stopPropagation(); dismissSplash();" type="button">
+<span>Entrar no site</span>
+<span class="material-symbols-outlined text-base">north_east</span>
+</button>
+<span class="font-label-caps text-[11px] uppercase tracking-wider text-on-surface-variant/75">
+        Ou clique em qualquer lugar para continuar
+      </span>
+</div>
+</div>
+<!-- Splash Bottom Progress Bar -->
+<div class="relative z-10 w-full max-w-md pb-4 flex flex-col items-center gap-2">
+<div class="w-full flex justify-between items-center text-xs font-numeral-badge text-on-surface-variant">
+<span>Carregando experiência</span>
+<span class="font-bold text-primary" id="splash-percent-text">0%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container rounded-full" id="splash-progress-bar"></div>
+</div>
+</div>
+</div>
+<!-- DYNAMIC SPOTLIGHT GLOW CURSOR TRACER -->
+<div id="magnetic-mouse-spotlight"></div>
+<!-- EDITORIAL LIVING WEBGL SHADER BACKGROUND (ANIMATION_17) -->
+<!-- STITCH_SHADER_START:ANIMATION_17 class="fixed inset-0 w-full h-full pointer-events-none -z-10 opacity-70" -->
+<div class="fixed inset-0 w-full h-full pointer-events-none -z-10 opacity-70" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_17" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_17');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+float snoise(vec2 v) {
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod289(i);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+  m = m*m;
+  m = m*m;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy / u_resolution.xy;
+    vec2 mouse = u_mouse.xy / u_resolution.xy;
+    
+    vec2 pos = st;
+    float aspect = u_resolution.x / u_resolution.y;
+    pos.x *= aspect;
+    vec2 mPos = mouse;
+    mPos.x *= aspect;
+
+    float dist = distance(pos, mPos);
+    float mouseWave = smoothstep(0.6, 0.0, dist);
+    
+    float t = u_time * 0.2;
+    vec2 dir = normalize(pos - mPos + vec2(0.001, 0.001));
+    vec2 displacement = dir * mouseWave * 0.15;
+    
+    vec2 p1 = pos * 1.6 + displacement + vec2(t * 0.25, -t * 0.15);
+    vec2 p2 = pos * 2.2 - displacement * 1.2 + vec2(-t * 0.2, t * 0.25);
+    float n1 = snoise(p1);
+    float n2 = snoise(p2);
+    float fluidField = (n1 * 0.6 + n2 * 0.4) * 0.5 + 0.5;
+    
+    // Editorial warm paper & linen
+    vec3 cPaper = vec3(0.982, 0.978, 0.970);      // #faf9f7
+    vec3 cLinen = vec3(0.940, 0.932, 0.915);      // Soft linen
+    vec3 cWarmAura = vec3(0.965, 0.925, 0.880);   // Warm tone
+    vec3 cTerracotta = vec3(0.85, 0.32, 0.15);    // Vistal terracotta #c84d28
+    vec3 cAmberLight = vec3(0.93, 0.65, 0.42);
+
+    vec3 color = mix(cPaper, cLinen, fluidField * 0.7);
+    color = mix(color, cWarmAura, smoothstep(0.4, 0.85, fluidField) * 0.6);
+
+    float ripple = sin(dist * 25.0 - u_time * 2.5) * 0.5 + 0.5;
+    float rippleMask = smoothstep(0.4, 0.05, dist) * ripple;
+    
+    color = mix(color, cAmberLight, mouseWave * 0.2);
+    color = mix(color, cTerracotta, (mouseWave * mouseWave) * 0.12 + rippleMask * 0.06);
+
+    float grain = (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.02;
+    color += grain;
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_17 -->
+<div class="fixed inset-0 w-full h-full pointer-events-none bg-[#faf9f7]/55 backdrop-blur-[0.5px] -z-10"></div>
+<header class="fixed top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] transition-all duration-300">
+<div class="h-20 max-w-7xl mx-auto px-margin md:px-margin-desktop flex items-center justify-between">
+<a class="flex items-baseline tracking-tight group" data-path="inicio" href="#">
+<span class="font-headline-md text-headline-sm md:text-headline-md text-primary transition-transform duration-300 group-hover:-translate-y-0.5">Vistal</span>
+<span class="font-headline-md text-headline-sm md:text-headline-md text-on-tertiary-container ml-0.5 brand-dot-pulse">.</span>
+</a>
+<nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="modelos-de-atuacao" href="#modelos">Modelos de Atuação</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="o-olhar-da-vistal" href="#olhar">O olhar da Vistal</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="o-servico" href="#servico">O serviço</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-primary hover:after:w-full after:transition-all after:duration-300" data-path="preco" href="#contato">Proposta &amp; Contato</a>
+</nav>
+<div class="flex items-center gap-space-sm md:gap-space-md">
+<!-- Visible Splash Replay Button -->
+<button class="inline-flex items-center gap-1.5 text-on-surface-variant hover:text-primary px-2.5 py-1.5 rounded text-xs font-label-caps uppercase tracking-wider transition-colors border border-outline-variant/40 hover:border-primary/50 bg-surface-container-low/60" onclick="replaySplash()" title="Rever apresentação de abertura" type="button">
+<span class="text-on-tertiary-container">✦</span>
+<span class="hidden sm:inline">Rever apresentação</span>
+</button>
+<a class="btn-elevate group inline-flex items-center gap-space-xs bg-secondary text-on-secondary px-space-md py-space-sm font-label-caps text-label-caps uppercase tracking-wider hover:bg-on-secondary-container shadow-sm hover:shadow-md rounded" data-path="contato" href="#contato">
+<span>Iniciar Projeto</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">north_east</span>
+</a>
+</div>
+</div>
+</header>
+<main class="w-full pt-20 bg-transparent"><div class="flex flex-col w-full">
+<!-- SECTION HERO -->
+<section class="relative w-full max-w-7xl mx-auto px-margin md:px-margin-desktop pt-space-xl md:pt-space-2xl pb-space-2xl md:pb-space-3xl flex flex-col justify-between">
+<!-- Hero Background Shader Container -->
+<div class="absolute inset-0 w-full h-full pointer-events-none -z-10 overflow-hidden rounded-3xl opacity-80">
+<!-- STITCH_SHADER_START:ANIMATION_17 class="absolute inset-0 w-full h-full pointer-events-none opacity-85" -->
+<div class="absolute inset-0 w-full h-full pointer-events-none opacity-85" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_17" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_17');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+float snoise(vec2 v) {
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod289(i);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+  m = m*m;
+  m = m*m;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+  vec3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+void main() {
+    vec2 st = gl_FragCoord.xy / u_resolution.xy;
+    vec2 mouse = u_mouse.xy / u_resolution.xy;
+    
+    vec2 pos = st;
+    float aspect = u_resolution.x / u_resolution.y;
+    pos.x *= aspect;
+    vec2 mPos = mouse;
+    mPos.x *= aspect;
+
+    float dist = distance(pos, mPos);
+    float mouseWave = smoothstep(0.6, 0.0, dist);
+    
+    float t = u_time * 0.2;
+    vec2 dir = normalize(pos - mPos + vec2(0.001, 0.001));
+    vec2 displacement = dir * mouseWave * 0.15;
+    
+    vec2 p1 = pos * 1.6 + displacement + vec2(t * 0.25, -t * 0.15);
+    vec2 p2 = pos * 2.2 - displacement * 1.2 + vec2(-t * 0.2, t * 0.25);
+    float n1 = snoise(p1);
+    float n2 = snoise(p2);
+    float fluidField = (n1 * 0.6 + n2 * 0.4) * 0.5 + 0.5;
+    
+    // Editorial warm paper & linen
+    vec3 cPaper = vec3(0.982, 0.978, 0.970);      // #faf9f7
+    vec3 cLinen = vec3(0.940, 0.932, 0.915);      // Soft linen
+    vec3 cWarmAura = vec3(0.965, 0.925, 0.880);   // Warm tone
+    vec3 cTerracotta = vec3(0.85, 0.32, 0.15);    // Vistal terracotta #c84d28
+    vec3 cAmberLight = vec3(0.93, 0.65, 0.42);
+
+    vec3 color = mix(cPaper, cLinen, fluidField * 0.7);
+    color = mix(color, cWarmAura, smoothstep(0.4, 0.85, fluidField) * 0.6);
+
+    float ripple = sin(dist * 25.0 - u_time * 2.5) * 0.5 + 0.5;
+    float rippleMask = smoothstep(0.4, 0.05, dist) * ripple;
+    
+    color = mix(color, cAmberLight, mouseWave * 0.2);
+    color = mix(color, cTerracotta, (mouseWave * mouseWave) * 0.12 + rippleMask * 0.06);
+
+    float grain = (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5) * 0.02;
+    color += grain;
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_17 -->
+</div>
+<!-- Top Metadata Bar -->
+<div class="w-full flex items-center justify-between pb-space-lg text-on-surface-variant text-label-caps font-label-caps tracking-widest uppercase reveal-init reveal-visible" style="transition-delay: 80ms;">
+<div class="flex items-center gap-space-xs">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-on-tertiary-container brand-dot-pulse"></span>
+<span class="">Revisão Cirúrgica • Sites Sob Medida • Sistemas Web</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-numeral-badge text-numeral-badge">
+<span class="">Estúdio Independente • Brasil</span>
+</div>
+</div>
+<!-- Editorial Hero Title & Asterisk Motif -->
+<div class="relative py-space-xl md:py-space-2xl reveal-init reveal-visible" style="transition-delay: 180ms;">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<div class="lg:col-span-10 space-y-1">
+<h1 class="font-headline-lg md:font-display-hero text-headline-lg md:text-display-hero text-primary tracking-tight leading-none overflow-hidden">
+<span class="inline-block transition-transform duration-700 ease-out">Pequenos ajustes.</span><br/>
+<span class="font-headline-lg-italic md:font-display-hero-italic text-headline-lg md:text-display-hero text-on-surface italic inline-block transition-transform duration-700 ease-out delay-100">Ou novos caminhos.</span>
+</h1>
+</div>
+<div class="hidden lg:flex lg:col-span-2 justify-end pt-space-md">
+<!-- Geometric Asterisk SVG with continuous smooth rotation + spring interaction -->
+<div class="p-2 cursor-pointer group select-none relative" id="hero-asterisk-container" onclick="pulseAsterisk(this)" onmouseenter="accelerateAsterisk(this)" onmouseleave="normalizeAsterisk(this)" title="Símbolo Vistal (interativo)">
+<svg class="w-16 h-16 text-on-tertiary-container animate-spin-editorial transition-all duration-500 ease-out group-hover:scale-110 drop-shadow-sm" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4.5" viewbox="0 0 100 100">
+<line x1="50" x2="50" y1="10" y2="90"></line>
+<line x1="10" x2="90" y1="50" y2="50"></line>
+<line x1="21.7" x2="78.3" y1="21.7" y2="78.3"></line>
+<line x1="21.7" x2="78.3" y1="78.3" y2="21.7"></line>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Bottom Quad Grid -->
+<div class="pt-space-xl grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-end reveal-init reveal-visible" style="transition-delay: 300ms;">
+<!-- Scroll Hint with floating animation -->
+<div class="md:col-span-3 flex items-center gap-space-sm pb-space-xs">
+<a class="w-11 h-11 rounded-full bg-surface-container/80 backdrop-blur hover:bg-surface-container-high transition-all duration-300 flex items-center justify-center text-primary group float-indicator shadow-sm hover:shadow active:scale-95 border border-outline-variant/30" href="#modelos" title="Ver modelos de atuação">
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-y-1">arrow_downward</span>
+</a>
+<span class="font-body-md text-body-md text-on-surface-variant max-w-[150px] leading-snug">
+          Conheça as 3 frentes de trabalho da Vistal.
+        </span>
+</div>
+<!-- Hero Pitch & Action Link -->
+<div class="md:col-span-5 space-y-space-md">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+          Seja para aperfeiçoar o site que já existe ou dar vida a uma nova plataforma autoral: a <span class="font-semibold text-primary">Vistal</span> alia rigor tipográfico, clareza cirúrgica e código de alta performance.
+        </p>
+<div class="flex items-center gap-space-lg flex-wrap">
+<a class="btn-elevate inline-flex items-center gap-space-xs font-headline-sm text-headline-sm text-primary pb-1 group hover:text-on-tertiary-container relative" href="#contato">
+<span class="transition-transform duration-300 group-hover:-translate-y-0.5">Iniciar uma conversa</span>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">north_east</span>
+<span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-primary group-hover:bg-on-tertiary-container transition-colors duration-300"></span>
+</a>
+<a class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="#modelos">
+<span class="">Ver modelos</span>
+<span class="material-symbols-outlined text-[15px]">arrow_downward</span>
+</a>
+</div>
+</div>
+<!-- Quick Transparent Price Card -->
+<div class="md:col-span-4 flex flex-col md:items-end justify-end pt-space-md md:pt-0">
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md w-full max-w-xs shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1.5 rounded border border-outline-variant/30 group">
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant mb-1 group-hover:text-primary transition-colors">
+            Revisão Pontual ou Novos Projetos
+          </div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-price-display text-price-display text-primary font-bold">R$ 250</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ revisão de página</span>
+</div>
+<div class="mt-space-xs font-numeral-badge text-numeral-badge text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] transition-transform duration-300 group-hover:scale-125">check_circle</span>
+<span class="">Escopo transparente • Orçamento prévio sob medida</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 00 — MODELOS DE ATUAÇÃO (3 FRENTES DE SERVIÇO) -->
+<section class="w-full bg-surface-container-low/85 backdrop-blur-sm py-space-2xl md:py-space-3xl border-t border-b border-outline-variant/30 relative" id="modelos">
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between pb-space-2xl text-on-surface gap-space-md reveal-init reveal-visible">
+<div class="space-y-space-xs max-w-2xl">
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant flex items-center gap-space-xs">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-on-tertiary-container brand-dot-pulse"></span>
+<span class="">Modelos de Atuação • Estúdio Vistal</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+            Três formas de colocar<br/>
+<span class="font-headline-lg-italic text-headline-lg italic">sua visão no ar.</span>
+</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md pb-1">
+          Do ajuste cirúrgico que destrava conversões à arquitetura completa de aplicações web. Sem excessos, sem dependência de templates genéricos.
+        </p>
+</div>
+<!-- 3 Editorial Service Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-desktop items-stretch reveal-init reveal-visible">
+<!-- CARD 01: REVISÃO E AJUSTES PONTUAIS -->
+<div class="service-card-interactive bg-surface-container-lowest/95 backdrop-blur-md p-space-lg md:p-space-xl rounded border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 group relative overflow-hidden" onmousemove="updateCardLight(event, this)">
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-bold">01 / REVISÃO</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-secondary bg-secondary-container px-2 py-0.5 rounded">Rápido &amp; Pontual</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight font-semibold group-hover:text-on-tertiary-container transition-colors">
+              Revisão &amp; Ajustes Pontuais
+            </h3>
+<p class="font-headline-lg-italic text-headline-sm italic text-on-surface-variant pt-1">
+              Para sites que já existem
+            </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Diagnóstico minucioso na sua página atual. Corrigimos ruídos visuais, aprimoramos a hierarquia tipográfica, refinamos a leitura no celular e destravamos a chamada para ação.
+          </p>
+<ul class="space-y-space-xs text-body-md text-on-surface pt-space-xs">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Diagnóstico cirúrgico em 1 página</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Até 3 correções decisivas de impacto</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Demonstração comparativa antes/depois</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Código pronto para publicação rápida</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-xl mt-space-lg border-t border-outline-variant/20 space-y-space-sm relative z-10">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-price-display text-headline-md text-primary font-bold">R$ 250</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ valor fixo por revisão</span>
+</div>
+<a class="btn-elevate w-full py-space-sm px-space-md bg-surface-container hover:bg-primary text-primary hover:text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded text-center transition-all flex items-center justify-center gap-1.5" href="#contato" onclick="selectServiceOption('revisao')">
+<span class="">Solicitar Revisão</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- CARD 02: CRIAÇÃO DE SITES SOB MEDIDA -->
+<div class="service-card-interactive bg-surface-container-lowest/95 backdrop-blur-md p-space-lg md:p-space-xl rounded border-2 border-primary/30 hover:border-primary shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 group relative overflow-hidden" onmousemove="updateCardLight(event, this)">
+<div class="absolute top-0 right-0 bg-primary text-on-primary font-label-caps text-[10px] uppercase tracking-widest px-3 py-1 rounded-bl z-20">
+          Mais Procurado
+        </div>
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-bold">02 / CRIAÇÃO</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded">Autoral &amp; Responsivo</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight font-semibold group-hover:text-on-tertiary-container transition-colors">
+              Sites Sob Medida
+            </h3>
+<p class="font-headline-lg-italic text-headline-sm italic text-on-surface-variant pt-1">
+              Do zero à publicação com identidade
+            </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Landing pages de alta conversão, sites institucionais completos, blogs editoriais e portfólios profissionais. Interfaces limpas, ultrarrápidas, desenhadas especificamente para o seu negócio.
+          </p>
+<ul class="space-y-space-xs text-body-md text-on-surface pt-space-xs">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Design exclusivo com rigor tipográfico</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">100% responsivo para celular e tablet</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Otimização técnica para velocidade &amp; SEO</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Integração de WhatsApp, domínio e formulários</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-xl mt-space-lg border-t border-outline-variant/20 space-y-space-sm relative z-10">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-price-display text-headline-md text-primary font-bold">Sob consulta</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ escopo transparente</span>
+</div>
+<a class="btn-elevate w-full py-space-sm px-space-md bg-secondary hover:bg-on-secondary-container text-on-secondary font-label-caps text-label-caps uppercase tracking-wider rounded text-center transition-all flex items-center justify-center gap-1.5 shadow-sm" href="#contato" onclick="selectServiceOption('criacao')">
+<span class="">Orçar Meu Site</span>
+<span class="material-symbols-outlined text-[15px]">north_east</span>
+</a>
+</div>
+</div>
+<!-- CARD 03: APLICATIVOS & SISTEMAS WEB -->
+<div class="service-card-interactive bg-surface-container-lowest/95 backdrop-blur-md p-space-lg md:p-space-xl rounded border border-outline-variant/40 shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 group relative overflow-hidden" onmousemove="updateCardLight(event, this)">
+<div class="space-y-space-md relative z-10">
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant/20">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-bold">03 / SISTEMAS</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-primary font-medium bg-surface-container px-2 py-0.5 rounded">Operação &amp; Fluxo</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight font-semibold group-hover:text-on-tertiary-container transition-colors">
+              Apps &amp; Sistemas Web
+            </h3>
+<p class="font-headline-lg-italic text-headline-sm italic text-on-surface-variant pt-1">
+              Ferramentas sob medida para o seu dia a dia
+            </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Painéis de controle, fluxos de atendimento, geradores de propostas e ferramentas operacionais personalizadas. Sem as mensalidades abusivas e o excesso de complexidade de softwares genéricos.
+          </p>
+<ul class="space-y-space-xs text-body-md text-on-surface pt-space-xs">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Painéis internos e dashboards limpos</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Fluxos de pedidos, agendamento e clientes</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Automações diretas e seguras</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_small</span>
+<span class="">Propriedade total do software construído</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-xl mt-space-lg border-t border-outline-variant/20 space-y-space-sm relative z-10">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-price-display text-headline-md text-primary font-bold">Projeto sob medida</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ proposta detalhada</span>
+</div>
+<a class="btn-elevate w-full py-space-sm px-space-md bg-surface-container hover:bg-primary text-primary hover:text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded text-center transition-all flex items-center justify-center gap-1.5" href="#contato" onclick="selectServiceOption('sistema')">
+<span class="">Descrever Meu Sistema</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 01 — O OLHAR DA VISTAL (DEEP OBSIDIAN CANVAS) -->
+<section class="w-full bg-primary-container text-on-primary py-space-2xl md:py-space-3xl relative overflow-hidden" id="olhar">
+<!-- Subtle Technical Grid Overlay -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-40"></div>
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop relative z-10">
+<!-- Section Tagline Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-space-xl text-on-primary-container gap-space-sm reveal-init reveal-visible">
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-surface-variant flex items-center gap-space-xs">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-on-tertiary-container brand-dot-pulse"></span>
+<span class="">01 — O olhar da Vistal</span>
+</div>
+<div class="font-numeral-badge text-numeral-badge text-primary-fixed-dim">
+          Demonstração de estudo técnico (marca ilustrativa)
+        </div>
+</div>
+<!-- Editorial Headline Dark -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop mb-space-2xl items-end reveal-init reveal-visible">
+<div class="lg:col-span-7">
+<h2 class="font-headline-lg md:font-headline-lg text-headline-lg text-on-primary tracking-tight">
+            Menos ruído.<br/>
+<span class="font-headline-lg-italic text-headline-lg italic text-inverse-on-surface">Mais clareza.</span>
+</h2>
+</div>
+<div class="lg:col-span-5 pb-space-xs">
+<p class="font-body-lg text-body-lg text-inverse-primary leading-relaxed">
+            Um título que explica. Um texto que dá para ler com calma. Um caminho natural e convidativo até o primeiro contato.
+          </p>
+</div>
+</div>
+<!-- Interactive Before / After Case Frame -->
+<div class="w-full bg-surface-container-high rounded p-2 md:p-space-sm shadow-2xl reveal-init border border-outline-variant/20 transition-all duration-300 hover:border-outline-variant/40 reveal-visible" id="case-preview-container">
+<!-- Top Application Bar within Frame -->
+<div class="flex flex-wrap items-center justify-between px-space-md py-space-sm bg-surface-variant/70 text-on-surface rounded-t">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm font-semibold tracking-tight text-primary">f.</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Forma Contábil</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">/ marca fictícia</span>
+</div>
+<!-- Interactive Segmented Toggle -->
+<div class="flex items-center bg-surface-container-highest p-0.5 rounded text-body-md font-body-md border border-outline-variant/40" role="tablist">
+<button aria-selected="false" class="px-space-md py-1 rounded text-on-surface-variant hover:text-on-surface transition-all duration-300 active:scale-95 text-sm font-medium" id="toggle-original-btn" onclick="switchPreview('original')" role="tab" type="button">
+              Original
+            </button>
+<button aria-selected="true" class="px-space-md py-1 rounded bg-surface-container-lowest text-primary font-semibold shadow-sm transition-all duration-300 active:scale-95 text-sm" id="toggle-refined-btn" onclick="switchPreview('refined')" role="tab" type="button">
+              Com ajustes
+            </button>
+</div>
+</div>
+<!-- Dynamic Visual Window with smooth transition -->
+<div class="w-full bg-surface-bright text-on-surface overflow-hidden min-h-[440px] relative transition-colors duration-500" id="preview-stage">
+<!-- VERSION A: REFINED (DEFAULT) -->
+<div class="w-full p-space-md md:p-space-xl transition-all duration-400 ease-out" id="view-refined">
+<!-- Mini site navigation bar -->
+<div class="flex items-center justify-between pb-space-xl text-on-surface">
+<div class="flex items-baseline gap-1 group cursor-default">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">forma</span>
+<span class="text-[11px] font-bold text-on-surface-variant">®</span>
+</div>
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant hidden md:block">
+                Contabilidade Consultiva &amp; Estratégica
+              </div>
+<div class="flex items-center gap-space-xs font-label-caps text-label-caps uppercase tracking-wider text-primary hover:text-on-tertiary-container cursor-pointer transition-colors duration-200">
+<span class="">Menu</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300 hover:rotate-90">add</span>
+</div>
+</div>
+<!-- Main Content Area: High Contrast Split -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-stretch bg-surface-container-low p-space-lg md:p-space-xl rounded border border-outline-variant/30 hover:border-outline-variant/60 transition-colors duration-300">
+<div class="md:col-span-7 flex flex-col justify-between space-y-space-lg">
+<div class="space-y-space-sm">
+<span class="font-label-caps text-label-caps text-on-tertiary-container uppercase tracking-widest font-semibold flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container brand-dot-pulse"></span>
+                    Para quem empreende
+                  </span>
+<h3 class="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary tracking-tight leading-tight">
+                    Sua empresa cresce.<br/>
+                    A gente cuida<br/>
+<span class="font-headline-lg-italic text-headline-md md:text-headline-lg italic">dos números.</span>
+</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md pt-space-xs">
+                    Sem planilhas intermináveis ou termos incompreensíveis. Relatórios claros mensais, folha de pagamento pontual e assessoria tributária preventiva.
+                  </p>
+</div>
+<div class="pt-space-md flex flex-wrap items-center gap-space-md">
+<a class="btn-elevate group bg-primary hover:bg-inverse-surface text-on-primary font-label-caps text-label-caps uppercase tracking-wider px-space-lg py-space-md inline-flex items-center gap-space-xs transition-all duration-300 shadow-sm hover:shadow-md" href="#contato">
+<span class="">Falar com especialista</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+</a>
+<span class="font-numeral-badge text-numeral-badge text-on-surface-variant flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
+                    Resposta em até 2 horas
+                  </span>
+</div>
+</div>
+<!-- Graphic Placard Column -->
+<div class="md:col-span-5 bg-secondary-container p-space-lg flex flex-col justify-between rounded min-h-[220px] transition-transform duration-500 hover:scale-[1.015] shadow-sm">
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-on-secondary-container font-medium">
+                  Um negócio.<br/>Novas possibilidades.
+                </div>
+<div class="flex justify-end items-end pt-space-xl">
+<span class="font-headline-lg-italic text-[120px] leading-none text-secondary select-none opacity-40 transition-all duration-300 hover:opacity-75 hover:scale-105">f</span>
+</div>
+</div>
+</div>
+</div>
+<!-- VERSION B: ORIGINAL (CHAOTIC / NOISY) -->
+<div class="hidden w-full p-space-md md:p-space-xl bg-[#f0ede6] transition-all duration-400 opacity-0" id="view-original">
+<div class="bg-surface-container-lowest p-space-md md:p-space-lg rounded space-y-space-md border-2 border-red-300 shadow-inner">
+<div class="flex wrap items-center justify-between text-body-md pb-space-xs border-b border-gray-200">
+<div class="font-bold text-error tracking-normal">Forma Assessoria Contábil e Perícias ME</div>
+<div class="text-[12px] text-on-surface-variant">Tel: (11) 9999-9999 / (11) 3333-3333</div>
+</div>
+<div class="p-space-md bg-amber-50 text-amber-950 text-body-md rounded border border-amber-200">
+<div class="flex items-center gap-2 mb-1 text-red-700 font-bold text-xs uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+<span class="">Aviso: Excesso de ruído visual identificado</span>
+</div>
+<p class="font-bold text-headline-sm mb-1 text-gray-900 leading-snug">BEM VINDO AO NOSSO NOVO SITE OFICIAL!</p>
+<p class="text-body-md leading-relaxed text-gray-700">
+                  Somos especialistas em abertura de empresas, cálculo de guias DAS, DCTF, SPED Fiscal, imposto de renda PF/PJ e recuperação de créditos com mais de 25 anos de mercado em todo o estado de São Paulo.
+                </p>
+<div class="mt-space-md flex gap-space-sm flex-wrap">
+<button class="bg-primary text-on-primary px-3 py-1.5 text-label-caps uppercase rounded hover:opacity-90" type="button">Saiba mais sobre certidões</button>
+<button class="bg-error text-on-primary px-3 py-1.5 text-label-caps uppercase rounded hover:opacity-90" type="button">Calculadora DAS</button>
+<button class="bg-secondary text-on-secondary px-3 py-1.5 text-label-caps uppercase rounded hover:opacity-90" type="button">Download tabela</button>
+</div>
+</div>
+<div class="flex items-center gap-2 text-[12px] text-red-700 font-medium bg-red-50 p-2.5 rounded border border-red-200">
+<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="">Ruídos: excesso de botões concorrentes, falta de respiro, ausência de proposta de valor imediata.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3 Pillars Row Underneath Case (Interactive Hover Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop pt-space-2xl reveal-init reveal-visible">
+<div class="space-y-space-xs p-space-md rounded transition-all duration-300 border border-transparent hover:border-outline-variant/40 hover:bg-white/5 cursor-pointer group" onclick="highlightPillar(1)" title="Clique para focar na Hierarquia Visual">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-bold group-hover:scale-110 transition-transform">01</span>
+<h4 class="font-headline-sm text-headline-sm text-on-primary font-semibold group-hover:text-primary-fixed transition-colors">Hierarquia visual</h4>
+</div>
+<p class="font-body-md text-body-md text-primary-fixed-dim leading-relaxed">
+            Título em destaque imediato e composição equilibrada em áreas bem definidas. O visitante capta a proposta em três segundos.
+          </p>
+</div>
+<div class="space-y-space-xs p-space-md rounded transition-all duration-300 border border-transparent hover:border-outline-variant/40 hover:bg-white/5 cursor-pointer group" onclick="highlightPillar(2)" title="Clique para focar na Leitura e ritmo">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-bold group-hover:scale-110 transition-transform">02</span>
+<h4 class="font-headline-sm text-headline-sm text-on-primary font-semibold group-hover:text-primary-fixed transition-colors">Leitura e ritmo</h4>
+</div>
+<p class="font-body-md text-body-md text-primary-fixed-dim leading-relaxed">
+            Texto confortável, contraste nítido e respiro entre blocos para evitar o cansaço ocular na leitura pelo celular.
+          </p>
+</div>
+<div class="space-y-space-xs p-space-md rounded transition-all duration-300 border border-transparent hover:border-outline-variant/40 hover:bg-white/5 cursor-pointer group" onclick="highlightPillar(3)" title="Clique para focar no Contato direcionado">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-bold group-hover:scale-110 transition-transform">03</span>
+<h4 class="font-headline-sm text-headline-sm text-on-primary font-semibold group-hover:text-primary-fixed transition-colors">Contato direcionado</h4>
+</div>
+<p class="font-body-md text-body-md text-primary-fixed-dim leading-relaxed">
+            Botão principal com área de clique ampla e contraste decisivo, orientando sem hesitação o próximo passo comercial.
+          </p>
+</div>
+</div>
+<div class="pt-space-xl text-on-primary-container text-body-md max-w-3xl reveal-init reveal-visible">
+<p class="text-[13px] text-primary-fixed-dim/80">
+          O texto é mantido fiel nas duas versões. Compare a postura visual, a fluidez de leitura e a facilidade de encontrar o botão de contato. Ajustes específicos de cada cliente são definidos com base no diagnóstico prévio.
+        </p>
+</div>
+</div>
+</section>
+<!-- SECTION 02 — O SERVIÇO & ESCOPO TRANSPARENTE -->
+<section class="w-full bg-surface/90 backdrop-blur-sm py-space-2xl md:py-space-3xl relative" id="servico">
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- Left Sticky Intro Column -->
+<div class="lg:col-span-5 space-y-space-lg lg:sticky lg:top-28 self-start reveal-init reveal-visible">
+<div class="space-y-space-xs">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant flex items-center gap-space-xs">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              02 — Metodologia &amp; Escopo
+            </span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+              Não precisa<br/>começar<br/>
+<span class="font-headline-lg-italic text-headline-lg italic">do zero.</span>
+</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            A Vistal revisa e aperfeiçoa websites e sistemas web de pequenos negócios. Melhoramos aquilo que você já colocou no ar ou projetamos interfaces limpas para organizar seu atendimento e sua operação.
+          </p>
+<div class="p-space-md bg-surface-container/90 backdrop-blur rounded space-y-space-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md border border-outline-variant/30">
+<div class="font-label-caps text-label-caps uppercase tracking-wider text-secondary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="">Garantia de foco cirúrgico</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Trabalhamos apenas no que move o ponteiro: legibilidade, posicionamento e taxa de conversão. Sem refações desnecessárias ou promessas vazias.
+            </p>
+</div>
+</div>
+<!-- Right Accordion / Deliverables Column -->
+<div class="lg:col-span-7 space-y-space-lg">
+<div class="flex items-center justify-between pb-space-sm text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest reveal-init reveal-visible">
+<span class="">O que está incluído</span>
+<span class="text-primary font-semibold bg-surface-container-high px-2 py-0.5 rounded">Processo Claro &amp; Transparente</span>
+</div>
+<!-- Editorial Accordion Stack -->
+<div class="space-y-space-md">
+<!-- Accordion Item 01 -->
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-space-lg rounded shadow-sm transition-all duration-300 hover:shadow-md border border-outline-variant/30 reveal-init reveal-visible" style="transition-delay: 100ms;">
+<div class="flex items-start justify-between cursor-pointer select-none group" onclick="toggleAccordion('acc-1')" role="button" tabindex="0">
+<div class="flex items-start gap-space-md">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-semibold mt-1">01</span>
+<h3 class="font-headline-sm text-headline-sm text-primary font-medium group-hover:text-on-tertiary-container transition-colors">Um olhar atento e analítico.</h3>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px] transition-transform duration-300 group-hover:scale-110" id="acc-icon-1">expand_more</span>
+</div>
+<div class="accordion-content pt-space-md pl-space-xl" id="acc-body-1">
+<div class="accordion-content-inner space-y-space-sm">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Revisamos a sua página inicial por completo: a mensagem de abertura, o fluxo no celular, a tipografia e o caminho percorrido pelo cliente até a solicitação de contato.
+                  </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Combinamos checagem técnica (velocidade de abertura, legibilidade e ergonomia móvel) com olhar de direção de arte editorial.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Accordion Item 02 -->
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-space-lg rounded shadow-sm transition-all duration-300 hover:shadow-md border border-outline-variant/30 reveal-init reveal-visible" style="transition-delay: 200ms;">
+<div class="flex items-start justify-between cursor-pointer select-none group" onclick="toggleAccordion('acc-2')" role="button" tabindex="0">
+<div class="flex items-start gap-space-md">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-semibold mt-1">02</span>
+<h3 class="font-headline-sm text-headline-sm text-primary font-medium group-hover:text-on-tertiary-container transition-colors">Três ajustes de alto impacto ou projeto novo.</h3>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px] transition-transform duration-300 group-hover:scale-110" id="acc-icon-2">expand_more</span>
+</div>
+<div class="accordion-content pt-space-md pl-space-xl" id="acc-body-2">
+<div class="accordion-content-inner space-y-space-sm">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Na revisão pontual (R$ 250), selecionamos as 3 correções mais determinantes: reestruturação do cabeçalho principal, ajuste de espaçamento/contraste e simplificação da chamada para ação (CTA).
+                  </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Para sites e sistemas sob medida, o cronograma é pré-acordado e dividido em etapas transparentes: prototipação, aprovação e entrega com código limpo.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Accordion Item 03 -->
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-space-lg rounded shadow-sm transition-all duration-300 hover:shadow-md border border-outline-variant/30 reveal-init reveal-visible" style="transition-delay: 300ms;">
+<div class="flex items-start justify-between cursor-pointer select-none group" onclick="toggleAccordion('acc-3')" role="button" tabindex="0">
+<div class="flex items-start gap-space-md">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container font-semibold mt-1">03</span>
+<h3 class="font-headline-sm text-headline-sm text-primary font-medium group-hover:text-on-tertiary-container transition-colors">Você vê exatamente o que mudou.</h3>
+</div>
+<span class="material-symbols-outlined text-primary text-[22px] transition-transform duration-300 group-hover:scale-110" id="acc-icon-3">expand_more</span>
+</div>
+<div class="accordion-content pt-space-md pl-space-xl" id="acc-body-3">
+<div class="accordion-content-inner space-y-space-sm">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Entregamos uma demonstração comparativa visual com relatório de justificativas e o código/ajuste pronto para publicação na sua plataforma atual ou hospedagem dedicada.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Direct Commitments Checklist -->
+<div class="bg-surface-container-low/90 backdrop-blur p-space-lg rounded space-y-space-sm mt-space-xl border border-outline-variant/30 reveal-init reveal-visible">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">
+                Escopo 100% combinado antes de qualquer execução ou pagamento.
+              </span>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">check</span>
+<span class="font-body-md text-body-md text-on-surface-variant">
+                Entregamos as melhorias combinadas; não prometemos fórmulas mágicas ou posições infladas em buscas, mas sim clareza, dignidade e ergonomia que transmitem confiança real.
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 03 — SEU PROJETO, AGORA (EDITORIAL INTAKE FORM & PRICING) -->
+<section class="w-full bg-surface-container-low/85 backdrop-blur-sm py-space-2xl md:py-space-3xl" id="contato">
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- Left Information & Price Pillar -->
+<div class="lg:col-span-5 space-y-space-xl reveal-init reveal-visible">
+<div class="space-y-space-xs">
+<div class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant flex items-center gap-space-xs">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-on-tertiary-container brand-dot-pulse"></span>
+<span class="">03 — Seu projeto, agora</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+              Vamos olhar<br/>
+<span class="font-headline-lg-italic text-headline-lg italic">de perto?</span>
+</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+            Seja para revisar seu site por R$ 250, criar um site exclusivo do zero ou estruturar um sistema operacional para o seu fluxo de atendimento: receba uma proposta clara e sem surpresas.
+          </p>
+<!-- Fixed Price Editorial Block -->
+<div class="p-space-lg bg-surface-container-lowest/95 backdrop-blur-md rounded shadow-sm space-y-space-md border border-outline-variant/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-space-xs">
+<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Modelos Disponíveis</span>
+<span class="font-numeral-badge text-numeral-badge text-secondary font-semibold">Previsibilidade Total</span>
+</div>
+<div class="space-y-space-xs">
+<div class="flex items-baseline justify-between">
+<span class="font-body-md font-semibold text-primary">Revisão Pontual (1 página)</span>
+<span class="font-headline-sm font-bold text-primary">R$ 250</span>
+</div>
+<p class="text-[13px] text-on-surface-variant">Até 3 ajustes cirúrgicos imediatos em página já publicada.</p>
+</div>
+<div class="space-y-space-xs pt-space-xs border-t border-outline-variant/10">
+<div class="flex items-baseline justify-between">
+<span class="font-body-md font-semibold text-primary">Sites &amp; Sistemas Sob Medida</span>
+<span class="font-body-md font-semibold text-secondary">Sob Orçamento</span>
+</div>
+<p class="text-[13px] text-on-surface-variant">Projetos autorais com escopo fechado, sem taxas ocultas.</p>
+</div>
+<div class="pt-space-xs">
+<a class="inline-flex items-center gap-space-xs font-body-md text-body-md text-primary hover:text-on-tertiary-container transition-colors duration-300 group" href="mailto:nlsites01@gmail.com">
+<span class="underline underline-offset-4 decoration-1">Quer conversar diretamente? Escreva para a Vistal</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Minimalist Form Pillar with Service Selector -->
+<div class="lg:col-span-7 bg-surface-container-lowest/95 backdrop-blur-md p-space-lg md:p-space-2xl rounded shadow-md border border-outline-variant/30 reveal-init reveal-visible" style="transition-delay: 150ms;">
+<form class="space-y-space-lg" id="vistal-form" onsubmit="handleFormSubmit(event)">
+<!-- Service Mode Selector (Interactive Segmented Choice) -->
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container">01</span>
+<span class="">Qual é o seu objetivo principal?</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1" id="service-selector-group">
+<button class="p-3 text-left rounded border-2 border-primary bg-surface-container-low transition-all duration-200 cursor-pointer service-btn-active group focus:outline-none" id="btn-srv-revisao" onclick="selectServiceOption('revisao')" type="button">
+<div class="font-label-caps text-[11px] font-bold text-on-tertiary-container uppercase tracking-wider">R$ 250</div>
+<div class="font-headline-sm text-sm font-semibold text-primary mt-0.5">Revisão Pontual</div>
+<div class="text-[12px] text-on-surface-variant mt-1 leading-snug">Melhorar site já no ar</div>
+</button>
+<button class="p-3 text-left rounded border border-outline-variant/50 hover:border-primary/50 bg-surface-container-lowest transition-all duration-200 cursor-pointer group focus:outline-none" id="btn-srv-criacao" onclick="selectServiceOption('criacao')" type="button">
+<div class="font-label-caps text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Sob Medida</div>
+<div class="font-headline-sm text-sm font-semibold text-primary mt-0.5">Criação de Site</div>
+<div class="text-[12px] text-on-surface-variant mt-1 leading-snug">Site novo ou landing page</div>
+</button>
+<button class="p-3 text-left rounded border border-outline-variant/50 hover:border-primary/50 bg-surface-container-lowest transition-all duration-200 cursor-pointer group focus:outline-none" id="btn-srv-sistema" onclick="selectServiceOption('sistema')" type="button">
+<div class="font-label-caps text-[11px] font-medium text-on-surface-variant uppercase tracking-wider">Personalizado</div>
+<div class="font-headline-sm text-sm font-semibold text-primary mt-0.5">App / Sistema Web</div>
+<div class="text-[12px] text-on-surface-variant mt-1 leading-snug">Painéis e automação</div>
+</button>
+</div>
+<input id="selected_service" name="selected_service" type="hidden" value="revisao"/>
+</div>
+<!-- Field 02: Business Name -->
+<div class="space-y-space-xs group">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider transition-colors duration-200 group-focus-within:text-primary">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container">02</span>
+<label class="" for="business_name">Nome do negócio ou projeto</label>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low px-space-md py-space-md text-on-surface placeholder:text-on-surface-variant/50 font-body-lg text-body-lg border-b-2 border-transparent hover:border-outline-variant focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all duration-300 rounded shadow-inner focus:shadow-sm" id="business_name" placeholder="Como seu negócio se chama?" required="" type="text"/>
+</div>
+</div>
+<!-- Field 03: Website URL or Description Context -->
+<div class="space-y-space-xs group">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider transition-colors duration-200 group-focus-within:text-primary">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container">03</span>
+<label class="" for="site_url" id="lbl-site-url">Endereço do site (ou link de referência)</label>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low px-space-md py-space-md text-on-surface placeholder:text-on-surface-variant/50 font-body-lg text-body-lg border-b-2 border-transparent hover:border-outline-variant focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all duration-300 rounded shadow-inner focus:shadow-sm" id="site_url" placeholder="https://seusite.com.br (ou 'ainda não tenho site')" required="" type="text"/>
+</div>
+</div>
+<!-- Field 04: Project Notes / Needs -->
+<div class="space-y-space-xs group">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider transition-colors duration-200 group-focus-within:text-primary">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container">04</span>
+<label class="" for="project_notes" id="lbl-notes">O que você gostaria de melhorar ou construir?</label>
+</div>
+<div class="relative">
+<textarea class="w-full bg-surface-container-low px-space-md py-space-md text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md border-b-2 border-transparent hover:border-outline-variant focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all duration-300 rounded shadow-inner focus:shadow-sm resize-none" id="project_notes" placeholder="Conte resumidamente sobre o momento do seu negócio ou o que você precisa." rows="3"></textarea>
+</div>
+</div>
+<!-- Field 05: E-mail -->
+<div class="space-y-space-xs group">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider transition-colors duration-200 group-focus-within:text-primary">
+<span class="font-numeral-badge text-numeral-badge text-on-tertiary-container">05</span>
+<label class="" for="client_email">Seu e-mail de contato</label>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low px-space-md py-space-md text-on-surface placeholder:text-on-surface-variant/50 font-body-lg text-body-lg border-b-2 border-transparent hover:border-outline-variant focus:border-primary focus:bg-surface-container-lowest focus:outline-none transition-all duration-300 rounded shadow-inner focus:shadow-sm" id="client_email" placeholder="voce@empresa.com.br" required="" type="email"/>
+</div>
+</div>
+<!-- Checkbox Terms -->
+<div class="flex items-start gap-space-sm pt-space-xs group">
+<input class="mt-1 w-4 h-4 rounded text-secondary focus:ring-0 cursor-pointer accent-secondary transition-transform duration-200 group-hover:scale-110" id="agreement" required="" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant leading-snug cursor-pointer select-none group-hover:text-on-surface transition-colors" for="agreement">
+                Entendi que todo projeto da Vistal começa com um diagnóstico preliminar transparente e escopo acordado antes de qualquer cobrança ou execução.
+              </label>
+</div>
+<!-- Submit CTA & Status Note -->
+<div class="pt-space-md space-y-space-md">
+<button class="btn-elevate group w-full bg-secondary hover:bg-on-secondary-container text-on-secondary py-space-lg px-space-xl flex items-center justify-center gap-space-sm font-label-caps text-label-caps uppercase tracking-widest rounded shadow-sm hover:shadow-lg active:scale-98" id="submit-btn" type="submit">
+<span class="" id="submit-text">Enviar solicitação de projeto</span>
+<span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" id="submit-icon">north_east</span>
+</button>
+<div class="hidden p-space-md bg-secondary-container text-on-secondary-container rounded font-body-md text-body-md transition-all duration-500 flex items-center gap-2" id="form-feedback">
+<span class="material-symbols-outlined text-[20px] text-secondary">check_circle</span>
+<span class="">Recebido com sucesso! Vamos examinar seu projeto e responder em até 24 horas úteis com os próximos passos.</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant text-center">
+                Seus dados serão usados com discrição exclusivamente para avaliar e atender a este pedido.
+              </p>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Magnetic Spotlight / Ambient Pointer tracker
+  (function initPointerSpotlight() {
+    const spotlight = document.getElementById('magnetic-mouse-spotlight');
+    if (!spotlight) return;
+
+    let posX = window.innerWidth * 0.5;
+    let posY = window.innerHeight * 0.5;
+    let targetX = posX;
+    let targetY = posY;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function update() {
+      posX += (targetX - posX) * 0.12;
+      posY += (targetY - posY) * 0.12;
+      spotlight.style.transform = `translate3d(${posX - 310}px, ${posY - 310}px, 0)`;
+      requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  })();
+
+  // Dynamic light reflection inside service cards
+  function updateCardLight(e, card) {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  }
+
+  // Asterisk dynamic acceleration on hover
+  function accelerateAsterisk(container) {
+    const svg = container.querySelector('svg');
+    if (svg) svg.style.animationDuration = '4s';
+  }
+  function normalizeAsterisk(container) {
+    const svg = container.querySelector('svg');
+    if (svg) svg.style.animationDuration = '24s';
+  }
+
+  // Asterisk playful spin trigger
+  function pulseAsterisk(element) {
+    const svg = element.querySelector('svg');
+    if (svg) {
+      svg.style.transform = 'scale(1.25) rotate(180deg)';
+      setTimeout(() => {
+        svg.style.transform = '';
+      }, 500);
+    }
+  }
+
+  // Editorial Splash / Preloader Lifecycle Management
+  let splashDismissed = false;
+  let progressInterval = null;
+
+  function dismissSplash() {
+    if (splashDismissed) return;
+    splashDismissed = true;
+    if (progressInterval) clearInterval(progressInterval);
+
+    const splash = document.getElementById('splash-overlay');
+    const bar = document.getElementById('splash-progress-bar');
+    const txt = document.getElementById('splash-percent-text');
+    if (bar) bar.style.width = '100%';
+    if (txt) txt.innerText = '100%';
+
+    if (splash) {
+      splash.classList.add('splash-hidden');
+    }
+  }
+
+  function replaySplash() {
+    splashDismissed = false;
+    const splash = document.getElementById('splash-overlay');
+    const bar = document.getElementById('splash-progress-bar');
+    const txt = document.getElementById('splash-percent-text');
+    if (splash) {
+      splash.classList.remove('splash-hidden');
+    }
+    if (bar) bar.style.width = '0%';
+    if (txt) txt.innerText = '0%';
+    startSplashProgress();
+  }
+
+  function startSplashProgress() {
+    if (progressInterval) clearInterval(progressInterval);
+    const bar = document.getElementById('splash-progress-bar');
+    const txt = document.getElementById('splash-percent-text');
+    let progress = 0;
+    const duration = 2200; // 2.2 seconds
+    const stepTime = 30;
+    const increment = 100 / (duration / stepTime);
+
+    progressInterval = setInterval(() => {
+      progress = Math.min(100, progress + increment);
+      if (bar) bar.style.width = `${progress}%`;
+      if (txt) txt.innerText = `${Math.floor(progress)}%`;
+
+      if (progress >= 100) {
+        clearInterval(progressInterval);
+        setTimeout(() => {
+          dismissSplash();
+        }, 320);
+      }
+    }, stepTime);
+  }
+
+  // Keypress listener to skip preloader immediately
+  window.addEventListener('keydown', (e) => {
+    if (!splashDismissed) {
+      dismissSplash();
+    }
+  });
+
+  // Service Selector in Form
+  function selectServiceOption(serviceKey) {
+    const hiddenInput = document.getElementById('selected_service');
+    if (hiddenInput) hiddenInput.value = serviceKey;
+
+    const btnRevisao = document.getElementById('btn-srv-revisao');
+    const btnCriacao = document.getElementById('btn-srv-criacao');
+    const btnSistema = document.getElementById('btn-srv-sistema');
+    const submitText = document.getElementById('submit-text');
+    const lblSiteUrl = document.getElementById('lbl-site-url');
+    const siteUrlInput = document.getElementById('site_url');
+
+    const activeClasses = "p-3 text-left rounded border-2 border-primary bg-surface-container-low transition-all duration-200 cursor-pointer shadow-sm";
+    const inactiveClasses = "p-3 text-left rounded border border-outline-variant/50 hover:border-primary/50 bg-surface-container-lowest transition-all duration-200 cursor-pointer";
+
+    if (btnRevisao) btnRevisao.className = inactiveClasses;
+    if (btnCriacao) btnCriacao.className = inactiveClasses;
+    if (btnSistema) btnSistema.className = inactiveClasses;
+
+    if (serviceKey === 'revisao') {
+      if (btnRevisao) btnRevisao.className = activeClasses;
+      if (submitText) submitText.innerText = 'Solicitar Revisão Cirúrgica (R$ 250)';
+      if (lblSiteUrl) lblSiteUrl.innerText = 'Endereço do site atual para análise';
+      if (siteUrlInput) siteUrlInput.placeholder = 'https://seusite.com.br';
+    } else if (serviceKey === 'criacao') {
+      if (btnCriacao) btnCriacao.className = activeClasses;
+      if (submitText) submitText.innerText = 'Pedir Proposta para Criação de Site';
+      if (lblSiteUrl) lblSiteUrl.innerText = 'Site atual ou referências visuais que você admira';
+      if (siteUrlInput) siteUrlInput.placeholder = 'https://link-de-referencia.com ou seu site atual';
+    } else if (serviceKey === 'sistema') {
+      if (btnSistema) btnSistema.className = activeClasses;
+      if (submitText) submitText.innerText = 'Solicitar Orçamento para App / Sistema Web';
+      if (lblSiteUrl) lblSiteUrl.innerText = 'Site da empresa ou fluxo atual de trabalho';
+      if (siteUrlInput) siteUrlInput.placeholder = 'https://suaempresa.com.br ou link do sistema atual';
+    }
+  }
+
+  // Smooth Before / After Segmented Switcher with crossfade
+  function switchPreview(mode) {
+    const viewRefined = document.getElementById('view-refined');
+    const viewOriginal = document.getElementById('view-original');
+    const btnRefined = document.getElementById('toggle-refined-btn');
+    const btnOriginal = document.getElementById('toggle-original-btn');
+
+    if (mode === 'original') {
+      viewRefined.classList.add('opacity-0');
+      btnOriginal.setAttribute('aria-selected', 'true');
+      btnRefined.setAttribute('aria-selected', 'false');
+      setTimeout(() => {
+        viewRefined.classList.add('hidden');
+        viewOriginal.classList.remove('hidden');
+        setTimeout(() => {
+          viewOriginal.classList.remove('opacity-0');
+        }, 20);
+      }, 180);
+
+      btnOriginal.className = "px-space-md py-1 rounded bg-surface-container-lowest text-primary font-semibold shadow-sm transition-all duration-300 active:scale-95 text-sm";
+      btnRefined.className = "px-space-md py-1 rounded text-on-surface-variant hover:text-on-surface transition-all duration-300 active:scale-95 text-sm font-medium";
+    } else {
+      viewOriginal.classList.add('opacity-0');
+      btnRefined.setAttribute('aria-selected', 'true');
+      btnOriginal.setAttribute('aria-selected', 'false');
+      setTimeout(() => {
+        viewOriginal.classList.remove('hidden');
+        viewRefined.classList.remove('hidden');
+        setTimeout(() => {
+          viewRefined.classList.remove('opacity-0');
+        }, 20);
+      }, 180);
+
+      btnRefined.className = "px-space-md py-1 rounded bg-surface-container-lowest text-primary font-semibold shadow-sm transition-all duration-300 active:scale-95 text-sm";
+      btnOriginal.className = "px-space-md py-1 rounded text-on-surface-variant hover:text-on-surface transition-all duration-300 active:scale-95 text-sm font-medium";
+    }
+  }
+
+  // Interactive Pillar Highlight Helper
+  function highlightPillar(index) {
+    const preview = document.getElementById('case-preview-container');
+    if (preview) {
+      preview.classList.remove('pillar-highlight-1');
+      void preview.offsetWidth; // trigger reflow
+      preview.classList.add('pillar-highlight-1');
+      switchPreview('refined');
+    }
+  }
+
+  // Smooth Accordion Toggle with clean rotational icon feedback
+  function toggleAccordion(id) {
+    const body = document.getElementById(id.replace('acc-', 'acc-body-'));
+    const icon = document.getElementById(id.replace('acc-', 'acc-icon-'));
+    
+    if (body.classList.contains('collapsed')) {
+      body.classList.remove('collapsed');
+      icon.style.transform = 'rotate(0deg)';
+      icon.innerText = 'expand_more';
+    } else {
+      body.classList.add('collapsed');
+      icon.style.transform = 'rotate(-90deg)';
+      icon.innerText = 'chevron_right';
+    }
+  }
+
+  // Form Submit Micro-Interaction with Realistic Progress Feedback
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const txt = document.getElementById('submit-text');
+    const icon = document.getElementById('submit-icon');
+    const feedback = document.getElementById('form-feedback');
+    
+    btn.disabled = true;
+    btn.classList.add('opacity-85', 'cursor-not-allowed');
+    const prevText = txt.innerText;
+    txt.innerText = 'Enviando...';
+    icon.innerText = 'hourglass_top';
+    icon.classList.add('animate-spin');
+
+    setTimeout(() => {
+      icon.classList.remove('animate-spin');
+      icon.innerText = 'check';
+      txt.innerText = 'Solicitação Enviada';
+      feedback.classList.remove('hidden');
+      document.getElementById('vistal-form').reset();
+      selectServiceOption('revisao');
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.classList.remove('opacity-85', 'cursor-not-allowed');
+        txt.innerText = prevText;
+        icon.innerText = 'north_east';
+      }, 5000);
+    }, 750);
+  }
+
+  // IntersectionObserver for Staggered Fade-in and Slide-up Reveal
+  document.addEventListener('DOMContentLoaded', () => {
+    startSplashProgress();
+
+    const reveals = document.querySelectorAll('.reveal-init');
+    
+    if ('IntersectionObserver' in window) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      reveals.forEach(el => revealObserver.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('reveal-visible'));
+    }
+  });
+</script>
+</main>
+<footer class="w-full bg-surface-container-low/95 backdrop-blur-md border-t border-outline-variant/30 relative z-20"><div class="max-w-7xl mx-auto px-margin md:px-margin-desktop pt-space-2xl pb-space-xl"><div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop mb-space-2xl"><div class="lg:col-span-6 space-y-space-md"><div class="flex items-baseline tracking-tight group"><span class="font-headline-md text-headline-md text-primary">Vistal</span><span class="font-headline-md text-headline-md text-on-tertiary-container ml-0.5 brand-dot-pulse">.</span></div><p class="font-headline-lg-italic text-headline-sm text-on-surface italic max-w-md">Um olhar atento. Uma presença melhor.</p><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Revisão cirúrgica de páginas existentes, criação de websites autorais e desenvolvimento de aplicativos e sistemas web sob medida para pequenos negócios e operações independentes.</p></div><div class="lg:col-span-3 space-y-space-sm"><div class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Modelos &amp; Navegação</div><ul class="space-y-space-xs"><li class="font-body-md text-body-md"><a class="text-on-surface-variant hover:text-primary transition-colors inline-block py-0.5 hover:translate-x-1 duration-200" data-path="modelos-de-atuacao" href="#modelos">Modelos de Atuação (3 frentes)</a></li><li class="font-body-md text-body-md"><a class="text-on-surface-variant hover:text-primary transition-colors inline-block py-0.5 hover:translate-x-1 duration-200" data-path="o-olhar-da-vistal" href="#olhar">O olhar da Vistal (Antes &amp; Depois)</a></li><li class="font-body-md text-body-md"><a class="text-on-surface-variant hover:text-primary transition-colors inline-block py-0.5 hover:translate-x-1 duration-200" data-path="o-servico" href="#servico">Metodologia de Ajustes</a></li><li class="font-body-md text-body-md"><a class="text-on-surface-variant hover:text-primary transition-colors inline-block py-0.5 hover:translate-x-1 duration-200" data-path="preco" href="#contato">Solicitar Orçamento / Revisão</a></li></ul></div><div class="lg:col-span-3 space-y-space-sm"><div class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Correspondência Direta</div><p class="font-body-md text-body-md text-on-surface-variant">Escreva detalhando o seu negócio ou enviando seu site:</p><a class="group inline-flex items-center gap-space-xs font-body-md text-body-md text-primary underline underline-offset-4 decoration-on-tertiary-container hover:text-on-tertiary-container transition-colors" href="mailto:nlsites01@gmail.com"><span class="">nlsites01@gmail.com</span><span class="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">arrow_outward</span></a><div class="pt-space-xs"><span class="font-numeral-badge text-numeral-badge uppercase text-secondary bg-secondary-container px-space-xs py-0.5 rounded shadow-sm">Atendimento Personalizado</span></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md text-on-surface-variant"><div class="font-label-caps text-label-caps uppercase tracking-wider">VISTAL © 2026 — Todos os direitos reservados. Revisão, Sites &amp; Sistemas Web.</div><div class="flex items-center gap-space-lg font-label-caps text-label-caps uppercase tracking-wider"><a class="hover:text-primary transition-colors" data-path="termos" href="#">Termos de Serviço</a><a class="hover:text-primary transition-colors" data-path="privacidade" href="#">Privacidade</a><a class="hover:text-primary transition-colors" data-path="metodologia" href="#">Metodologia</a><a class="inline-flex items-center gap-1 hover:text-primary transition-colors" href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" title="Voltar ao início"><span class="">Topo</span><span class="material-symbols-outlined text-[14px]">arrow_upward</span></a></div></div></div></footer>
+</body></html>
+
+<!-- Vistal — Apresentação de Entrada, Fundo Interativo & Serviços Completos -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#FAF9F7" />
+  <g transform="translate(136, 116)">
+    <path d="M20 20 L108 260 L140 260 L228 20 L174 20 L124 186 L74 20 Z" fill="#121312" />
+    <circle cx="236" cy="246" r="18" fill="#C84D28" />
+  </g>
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="none" stroke="#121312" stroke-opacity="0.08" stroke-width="2" />
+</svg>
