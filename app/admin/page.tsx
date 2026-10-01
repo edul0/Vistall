@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Pedidos | Vistal",
+  title: "Pedidos | Vistall",
   robots: { index: false, follow: false },
 };
 
@@ -33,7 +33,7 @@ export default async function AdminPage() {
   if (!user) {
     return (
       <main className="admin-shell admin-gate">
-        <p className="admin-overline">Vistal / Área reservada</p>
+        <p className="admin-overline">Vistall / Área reservada</p>
         <h1>Acompanhe os pedidos.</h1>
         <p>Entre com a conta proprietária do site para visualizar as solicitações recebidas.</p>
         <a className="admin-primary" href={chatGPTSignInPath("/admin")}>Entrar com ChatGPT <span aria-hidden>↗</span></a>
@@ -45,7 +45,7 @@ export default async function AdminPage() {
   if (!ownerEmail || user.email.trim().toLowerCase() !== ownerEmail) {
     return (
       <main className="admin-shell admin-gate">
-        <p className="admin-overline">Vistal / Área reservada</p>
+        <p className="admin-overline">Vistall / Área reservada</p>
         <h1>Acesso restrito.</h1>
         <p>Esta página está disponível apenas para a conta proprietária.</p>
         <a href="/">Voltar ao site <span aria-hidden>↗</span></a>
@@ -65,7 +65,7 @@ export default async function AdminPage() {
 
   return (
     <main className="admin-shell">
-      <div className="admin-top"><a href="/" className="admin-brand">Vistal<span>.</span></a><span>ÁREA RESERVADA</span></div>
+      <div className="admin-top"><a href="/" className="admin-brand">Vistall<span>.</span></a><span>ÁREA RESERVADA</span></div>
       <div className="admin-heading"><div><p className="admin-overline">OPERAÇÃO / PEDIDOS</p><h1>Solicitações<br /><em>recebidas.</em></h1></div><p>Pedidos enviados pelo formulário do site. O pagamento deve ser conferido separadamente no Mercado Pago antes de começar o serviço.</p></div>
       <div className="admin-count"><span>01 / VISÃO GERAL</span><strong>{orders.length + inquiries.length} {(orders.length + inquiries.length) === 1 ? "pedido" : "pedidos"}</strong></div>
       {orders.length + inquiries.length === 0 ? (
@@ -85,7 +85,7 @@ export default async function AdminPage() {
           </article>
         ))}</div>
       )}
-      <footer className="admin-footer"><span>Vistal — gestão interna</span><span>Últimos 100 pedidos</span></footer>
+      <footer className="admin-footer"><span>Vistall — gestão interna</span><span>Últimos 100 pedidos</span></footer>
     </main>
   );
 }

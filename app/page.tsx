@@ -1,1 +1,1 @@
-export { default } from "./vistal-home";
+export { default } from "./vistall-home";

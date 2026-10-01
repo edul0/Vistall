@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vistal | Sites, revisões e sistemas web",
+  title: "Vistall | Sites, revisões e sistemas web",
   description: "Estúdio independente para revisão de sites, criação de páginas e sistemas web sob medida. Atendimento remoto no Brasil.",
   icons: {
     icon: "/favicon.svg",

@@ -31,7 +31,7 @@
 
   window.handleFormSubmit = async function (event) {
     event.preventDefault();
-    const form = document.getElementById("vistal-form");
+    const form = document.getElementById("vistall-form");
     if (!form || !form.reportValidity()) return;
     const button = document.getElementById("submit-btn");
     const buttonText = document.getElementById("submit-text");
