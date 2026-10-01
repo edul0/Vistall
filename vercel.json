@@ -1,1 +1,11 @@
-{"framework":"nextjs","buildCommand":"npx next build","outputDirectory":".next"}
+{
+  "framework": null,
+  "buildCommand": "node scripts/prepare-vercel.mjs",
+  "outputDirectory": "vercel-dist",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://vistal.nlsites01.workers.dev/api/:path*"
+    }
+  ]
+}
