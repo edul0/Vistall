@@ -16,7 +16,7 @@ html = html.replace("<head>", `<head>
 <meta name="description" content="Estúdio independente para revisão de sites, criação de páginas e sistemas web sob medida. Atendimento remoto no Brasil." />
 <meta name="google-site-verification" content="NzbgppRpooF1QSAHP1jVhn_8Oaoev9mSboFGny4C5Wk" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="canonical" href="https://vistall.vercel.app/" />
+<link rel="canonical" href="https://vistall.com.br/" />
 <noscript><style>#splash-overlay{display:none!important}</style></noscript>`);
 
 const copyEdits = [

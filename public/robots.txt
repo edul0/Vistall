@@ -3,5 +3,5 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://vistall.nlsites01.workers.dev/sitemap.xml
+Sitemap: https://vistall.com.br/sitemap.xml
 
