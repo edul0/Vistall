@@ -60,7 +60,7 @@
       feedback.replaceChildren();
       const message = document.createElement("span");
       message.textContent = service === "revisao"
-        ? "Pedido recebido. Para confirmar a revisão de R$ 250, pague pelo Mercado Pago. O vendedor aparece como NL STORE."
+        ? "Pedido recebido. Para confirmar a revisão de R$ 250, pague pelo Mercado Pago. No checkout, confira o nome cadastrado da conta de pagamento antes de concluir."
         : "Pedido recebido. Responderemos pelo e-mail informado com uma proposta de escopo e valor; ainda não há cobrança.";
       feedback.append(message);
       if (service === "revisao") {
