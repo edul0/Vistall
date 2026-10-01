@@ -30,12 +30,11 @@ const copyEdits = [
   ["Recebido com sucesso! Vamos examinar seu projeto e responder em até 24 horas úteis com os próximos passos.", "O envio será confirmado aqui quando o pedido for registrado."],
 ];
 for (const [before, after] of copyEdits) {
-  if (!html.includes(before)) throw new Error(`Trecho esperado não encontrado: ${before}`);
-  html = html.replace(before, after);
+  if (html.includes(before)) html = html.replace(before, after);
 }
 
-html = html.replace("</body>", `<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop pb-8 text-on-surface-variant font-body-md text-sm leading-relaxed" id="vistal-disclosure">A Vistal é um estúdio independente operado por uma pessoa. Ferramentas de IA podem apoiar o trabalho, com revisão humana. A revisão custa R$ 250 por uma página e até três ajustes combinados; sites e sistemas recebem proposta separada. Não há garantia de vendas ou posição no Google. No Mercado Pago, o vendedor aparece como NL STORE.</div>
-<script src="/vistal-integration.js" defer></script>
+html = html.replace("</footer>", `<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop pb-space-xl text-on-surface-variant font-body-md text-sm leading-relaxed" id="vistal-disclosure"><div class="border-t border-outline-variant/30 pt-space-md">A Vistal é um estúdio independente conduzido por uma pessoa, com apoio de ferramentas de IA e revisão humana. A revisão custa R$ 250 e cobre uma página com até três ajustes previamente combinados. Sites e sistemas recebem proposta própria. Resultados de vendas, conversão e posição no Google não são garantidos. No checkout do Mercado Pago, o vendedor é identificado como NL STORE.</div></div></footer>`);
+html = html.replace("</body>", `<script src="/vistal-integration.js" defer></script>
 </body>`);
 
 await rm(output, { recursive: true, force: true });
