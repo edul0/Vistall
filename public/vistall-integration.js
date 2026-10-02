@@ -59,19 +59,8 @@
 
       feedback.replaceChildren();
       const message = document.createElement("span");
-      message.textContent = service === "revisao"
-        ? "Pedido recebido. Para confirmar a revisão de R$ 250, pague pelo Mercado Pago. No checkout, confira o nome cadastrado da conta de pagamento antes de concluir."
-        : "Pedido recebido. Responderemos pelo e-mail informado com uma proposta de escopo e valor; ainda não há cobrança.";
+      message.textContent = "Pedido recebido. Vamos conversar pelo e-mail informado para entender sua necessidade e definir escopo, prazo e valor. O pagamento será solicitado somente após a aprovação da proposta.";
       feedback.append(message);
-      if (service === "revisao") {
-        const payment = document.createElement("a");
-        payment.href = "https://mpago.la/26Q1m2a";
-        payment.target = "_blank";
-        payment.rel = "noopener noreferrer";
-        payment.textContent = "Abrir pagamento ↗";
-        payment.style.cssText = "display:block;font-weight:700;text-decoration:underline;margin-top:12px";
-        feedback.append(payment);
-      }
       feedback.classList.remove("hidden");
       feedback.setAttribute("role", "status");
       form.reset();

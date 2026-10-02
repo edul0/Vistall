@@ -33,7 +33,7 @@ for (const [before, after] of copyEdits) {
   if (html.includes(before)) html = html.replace(before, after);
 }
 
-html = html.replace("</footer>", `<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop pb-space-xl text-on-surface-variant font-body-md text-sm leading-relaxed" id="vistall-disclosure"><div class="border-t border-outline-variant/30 pt-space-md">A Vistall é um estúdio independente conduzido por uma pessoa, com apoio de ferramentas de IA e revisão humana. A revisão custa R$ 250 e cobre uma página com até três ajustes previamente combinados. Sites e sistemas recebem proposta própria. Resultados de vendas, conversão e posição no Google não são garantidos. No checkout do Mercado Pago, o vendedor é identificado como NL STORE.</div></div></footer>`);
+html = html.replace("</footer>", `<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop pb-space-xl text-on-surface-variant font-body-md text-sm leading-relaxed" id="vistall-disclosure"><div class="border-t border-outline-variant/30 pt-space-md">A Vistall é um estúdio independente conduzido por uma pessoa, com apoio de ferramentas de IA e revisão humana. Cada serviço recebe uma proposta com escopo, prazo e valor após a conversa inicial. O link de pagamento é enviado somente após a aprovação da proposta. Resultados de vendas, conversão e posição no Google não são garantidos.</div></div></footer>`);
 html = html.replace("</body>", `<script src="/vistall-integration.js" defer></script>
 </body>`);
 

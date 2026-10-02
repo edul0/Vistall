@@ -896,8 +896,8 @@ void main() {
             Revisão Pontual ou Novos Projetos
           </div>
 <div class="flex items-baseline gap-space-xs">
-<span class="font-price-display text-price-display text-primary font-bold">R$ 250</span>
-<span class="font-body-md text-body-md text-on-surface-variant">/ revisão de página</span>
+<span class="font-price-display text-price-display text-primary font-bold">Sob consulta</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ proposta personalizada</span>
 </div>
 <div class="mt-space-xs font-numeral-badge text-numeral-badge text-secondary flex items-center gap-1">
 <span class="material-symbols-outlined text-[14px] transition-transform duration-300 group-hover:scale-125">check_circle</span>
@@ -948,8 +948,8 @@ void main() {
 </div>
 <div class="pt-space-xl mt-space-lg border-t border-outline-variant/20 space-y-space-sm relative z-10">
 <div class="flex items-baseline gap-space-xs">
-<span class="font-price-display text-headline-md text-primary font-bold">R$ 250</span>
-<span class="font-body-md text-body-md text-on-surface-variant">/ valor fixo por revisão</span>
+<span class="font-price-display text-headline-md text-primary font-bold">Sob consulta</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/ escopo definido em conversa</span>
 </div>
 <a class="btn-elevate w-full py-space-sm px-space-md bg-surface-container hover:bg-primary text-primary hover:text-on-primary font-label-caps text-label-caps uppercase tracking-wider rounded text-center transition-all flex items-center justify-center gap-1.5" href="#contato" onclick="selectServiceOption('revisao')">
 <span class="">Solicitar Revisão</span>
@@ -1224,7 +1224,7 @@ void main() {
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1" id="service-selector-group">
 <button class="p-3 text-left rounded border-2 border-primary bg-surface-container-low transition-all duration-200 cursor-pointer service-btn-active group focus:outline-none" id="btn-srv-revisao" onclick="selectServiceOption('revisao')" type="button">
-<div class="font-label-caps text-[11px] font-bold text-on-tertiary-container uppercase tracking-wider">R$ 250</div>
+<div class="font-label-caps text-[11px] font-bold text-on-tertiary-container uppercase tracking-wider">Sob consulta</div>
 <div class="font-headline-sm text-sm font-semibold text-primary mt-0.5">Revisão Pontual</div>
 <div class="text-[12px] text-on-surface-variant mt-1 leading-snug">Melhorar site já no ar</div>
 </button>
@@ -1447,7 +1447,7 @@ void main() {
 
     if (serviceKey === 'revisao') {
       if (btnRevisao) btnRevisao.className = activeClasses;
-      if (submitText) submitText.innerText = 'Solicitar revisão (R$ 250)';
+      if (submitText) submitText.innerText = 'Solicitar proposta';
       if (lblSiteUrl) lblSiteUrl.innerText = 'Endereço do site atual para análise';
       if (siteUrlInput) siteUrlInput.placeholder = 'https://seusite.com.br';
     } else if (serviceKey === 'criacao') {
