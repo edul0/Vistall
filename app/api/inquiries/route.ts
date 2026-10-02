@@ -1,13 +1,11 @@
+import { readPublicInput, publicError } from "@/lib/public-input";
 import { env } from "cloudflare:workers";
 
 const services = new Set(["revisao", "criacao", "sistema"]);
 
 export async function POST(request: Request) {
   try {
-    if ((request.headers.get("content-type") || "").split(";")[0] !== "application/json") {
-      return Response.json({ error: "Formato inválido." }, { status: 415 });
-    }
-    const input = (await request.json()) as Record<string, unknown>;
+    const input = await readPublicInput(request);
     if (typeof input.extra === "string" && input.extra.trim()) return Response.json({ ok: true });
     const service = String(input.service || "").trim();
     const business = String(input.business || "").trim();
@@ -34,7 +32,5 @@ export async function POST(request: Request) {
     await env.DB.prepare("INSERT INTO inquiries (id, service, business, website, notes, email) VALUES (?, ?, ?, ?, ?, ?)")
       .bind(id, service, business, finalWebsite, notes, email).run();
     return Response.json({ ok: true, id }, { status: 201 });
-  } catch {
-    return Response.json({ error: "Não conseguimos receber o pedido agora. Tente novamente mais tarde." }, { status: 503 });
-  }
+  } catch (error) { return publicError(error); }
 }

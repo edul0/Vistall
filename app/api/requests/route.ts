@@ -1,9 +1,9 @@
+import { readPublicInput, publicError } from "@/lib/public-input";
 import { saveRequest } from "@/lib/request-store";
 
 export async function POST(request: Request) {
   try {
-    if ((request.headers.get("content-type") || "").split(";")[0] !== "application/json") return Response.json({ error: "Formato inválido." }, { status: 415 });
-    const input = (await request.json()) as Record<string, unknown>;
+    const input = await readPublicInput(request);
     if (typeof input.extra === "string" && input.extra.trim()) return Response.json({ ok: true });
     const business = String(input.business || "").trim();
     const website = String(input.website || "").trim();
@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     if (!["http:", "https:"].includes(parsed.protocol) || !parsed.hostname.includes(".") || parsed.username || parsed.password) return Response.json({ error: "Informe um site público válido." }, { status: 400 });
     const id = await saveRequest({ business, website: parsed.toString(), email });
     return Response.json({ ok: true, id }, { status: 201 });
-  } catch {
-    return Response.json({ error: "Não conseguimos receber o pedido agora. Tente novamente mais tarde." }, { status: 503 });
+  } catch (error) {
+    return publicError(error);
   }
 }

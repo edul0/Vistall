@@ -52,7 +52,7 @@
       const response = await fetch("/api/inquiries", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ service, business, website, notes, email }),
+        body: JSON.stringify({ service, business, website, notes, email, extra: document.getElementById("contact_website")?.value || "" }),
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Não foi possível enviar agora.");
