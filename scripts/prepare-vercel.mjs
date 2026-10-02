@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { secureStaticHtml } from "./secure-static-html.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const source = resolve(root, "site/vistall-original.html");
@@ -40,6 +41,6 @@ html = html.replace("</body>", `<script src="/vistall-integration.js" defer></sc
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(resolve(root, "public"), output, { recursive: true });
-await writeFile(resolve(output, "index.html"), html, "utf8");
-await writeFile(resolve(output, "sobre.html"), await readFile(resolve(root, "site/sobre.html"), "utf8"), "utf8");
+await writeFile(resolve(output, "index.html"), await secureStaticHtml(html, output, "home"), "utf8");
+await writeFile(resolve(output, "sobre.html"), await secureStaticHtml(await readFile(resolve(root, "site/sobre.html"), "utf8"), output, "portfolio"), "utf8");
 console.log("Vistall preparada para publicação estática na Vercel.");
