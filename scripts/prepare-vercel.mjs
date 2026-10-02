@@ -41,4 +41,5 @@ await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(resolve(root, "public"), output, { recursive: true });
 await writeFile(resolve(output, "index.html"), html, "utf8");
+await writeFile(resolve(output, "sobre.html"), await readFile(resolve(root, "site/sobre.html"), "utf8"), "utf8");
 console.log("Vistall preparada para publicação estática na Vercel.");

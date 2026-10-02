@@ -4,6 +4,10 @@
   "outputDirectory": "vercel-dist",
   "rewrites": [
     {
+      "source": "/sobre",
+      "destination": "/sobre.html"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://vistall.nlsites01.workers.dev/api/:path*"
     }
