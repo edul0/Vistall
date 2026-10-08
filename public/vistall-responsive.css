@@ -21,3 +21,18 @@
 }
 @media(max-width:359px){.vistall-home .cinema-foot{flex-wrap:wrap}.portfolio .actions{flex-direction:column;align-items:start}.portfolio .badge-face{padding:16px}.portfolio .badge-name{font-size:15px}.portfolio .badge-ident{gap:10px;grid-template-columns:64px 1fr}.portfolio .badge-avatar{width:64px;height:64px}}
 @media(prefers-reduced-motion:reduce){.portfolio-film video{display:none}.portfolio-menu i{transition:none}}
+/* Compact first screen on phones: keep the message in view, without a viewport-sized empty spacer. */
+@media(max-width:760px){
+  .vistall-home .vistall-gallery-hero.cinema-hero{min-height:0;justify-content:flex-start;padding:126px 22px 24px!important}
+  .vistall-home .cinema-hero .design-hero-grid{width:100%;max-width:none;margin:104px 0 30px}
+  .vistall-home .cinema-hero .cinema-kicker{top:105px;left:22px;right:22px;max-width:none;line-height:1.7}
+  .vistall-home .cinema-hero .cinema-identity{top:151px;right:36px;width:56px!important;height:56px!important;translate:0 0}
+  .vistall-home .cinema-hero>.hero-signature,.vistall-home .cinema-hero>.hero-scroll-cue{display:none}
+  .vistall-home .cinema-hero .design-hero-grid h1{font-size:clamp(34px,9.8vw,44px);line-height:1.14;margin-bottom:22px}
+  .vistall-home .cinema-hero .design-intro{max-width:360px;line-height:1.7;margin-bottom:22px}
+  .vistall-home .cinema-hero .design-actions{gap:12px 18px;align-items:center}
+  .vistall-home .cinema-hero .design-actions a[href='#contato']{font-size:12px;padding:14px 18px;min-height:46px}
+  .vistall-home .cinema-hero .design-actions a:last-child{font-size:11px;min-height:44px}
+  .vistall-home .cinema-hero .cinema-foot{width:100%;padding-top:18px;margin-top:0}
+}
+@media(max-width:359px){.vistall-home .cinema-hero .design-hero-grid{margin-top:92px}.vistall-home .cinema-hero .design-hero-grid h1{font-size:32px}.vistall-home .cinema-hero .cinema-foot{flex-wrap:wrap;gap:12px}}
