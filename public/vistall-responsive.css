@@ -36,3 +36,19 @@
   .vistall-home .cinema-hero .cinema-foot{width:100%;padding-top:18px;margin-top:0}
 }
 @media(max-width:359px){.vistall-home .cinema-hero .design-hero-grid{margin-top:92px}.vistall-home .cinema-hero .design-hero-grid h1{font-size:32px}.vistall-home .cinema-hero .cinema-foot{flex-wrap:wrap;gap:12px}}
+/* Keep service choices usable while the mobile preview changes. */
+@media(max-width:760px){
+  .vistall-home .offer-tabs{position:sticky;top:86px;z-index:25;width:100%;gap:3px;margin:0 0 18px;padding:5px;background:#eae6df;box-shadow:0 5px 14px #1b1c1a0a}
+  .vistall-home .offer-tabs button{min-height:48px;font-size:11px;line-height:1.4;flex:1;white-space:normal;padding:9px 5px;touch-action:manipulation}
+  .vistall-home .offer-panel{display:flex;flex-direction:column;min-height:0;gap:22px;padding:18px;border-radius:20px}
+  .vistall-home .offer-panel>.service-scene{order:0;width:100%;padding:0}
+  .vistall-home .offer-panel>.offer-copy{order:1;width:100%;max-width:none}
+  .vistall-home .offer-copy h3{font-size:26px;line-height:1.2;margin-bottom:16px}
+  .vistall-home .offer-copy p{font-size:14px;line-height:1.7;margin-bottom:14px}
+  .vistall-home .offer-copy small{margin-bottom:16px}
+  .vistall-home .offer-number{margin-bottom:14px}
+  .vistall-home .scene-note{margin-top:12px;line-height:1.5}
+  .vistall-home .offer-panel .scene-dashboard{min-height:275px}
+  .vistall-home .offer-panel .scene-review-content{padding:20px}
+  .vistall-home .offer-panel .scene-review-content>strong{font-size:27px}
+}

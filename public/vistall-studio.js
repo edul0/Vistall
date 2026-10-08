@@ -9,7 +9,16 @@
       if (!reduced.matches) panel.animate([{opacity:.35,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:340,easing:'cubic-bezier(.22,1,.36,1)'});
     }
     tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('click', () => {
+        select(tab);
+        if (matchMedia('(max-width:760px)').matches) {
+          const controls = gallery.querySelector('.offer-tabs');
+          const header = document.querySelector('header');
+          const offset = (header?.getBoundingClientRect().bottom || 76) + 10;
+          const top = Math.max(0, scrollY + controls.getBoundingClientRect().top - offset);
+          window.scrollTo({top, behavior: reduced.matches ? 'instant' : 'smooth'});
+        }
+      });
       tab.addEventListener('keydown', event => {
         let next;
         if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
