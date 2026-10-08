@@ -1,0 +1,17 @@
+.vistall-gallery-hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(430px circle at var(--light-x,75%) var(--light-y,40%),#e6522a28,transparent 70%);opacity:0;transition:opacity 750ms ease}
+.vistall-gallery-hero.light-active::after{opacity:1}
+.design-window::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 25%,#ffffff70 45%,transparent 65%);background-size:240% 100%;animation:glass-light 14s ease-in-out infinite;opacity:.35}
+.design-canvas::before{box-shadow:0 0 65px #e6522a0b,inset 0 0 32px #e6522a08;animation:halo-breathe 10s ease-in-out infinite}
+.design-canvas.light-active::before{border-color:#e6522a60;box-shadow:0 0 80px #e6522a18,inset 0 0 32px #e6522a0e}
+.design-canvas::before{transition:border-color 800ms ease,box-shadow 800ms ease}
+#modelos .design-service{position:relative;isolation:isolate}
+#modelos .design-service::after{content:'';display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(300px circle at var(--light-x,50%) var(--light-y,50%),#e6522a12,transparent 75%);opacity:0;transition:opacity 500ms ease}
+#modelos .design-service.light-active::after{opacity:1}
+.vistall-wordmark .vistall-brand-spark{transition:filter 450ms ease}
+.vistall-wordmark:hover .vistall-brand-spark{filter:drop-shadow(0 0 5px #e6522a60)}
+.design-actions .btn-elevate{position:relative;overflow:hidden}
+.design-actions .btn-elevate::after{content:'';position:absolute;inset:-30% -80%;background:linear-gradient(110deg,transparent 35%,#e6522a14 50%,transparent 65%);translate:-50% 0;transition:translate 850ms cubic-bezier(.22,1,.36,1);pointer-events:none}
+.design-actions .btn-elevate:hover::after{translate:50% 0}
+@keyframes glass-light{0%,100%{background-position:100% 50%}50%{background-position:0% 50%}}
+@keyframes halo-breathe{0%,100%{opacity:.5}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.design-window::after,.design-canvas::before{animation:none}.vistall-gallery-hero::after,#modelos .design-service::after{display:none}.design-actions .btn-elevate::after{display:none}}

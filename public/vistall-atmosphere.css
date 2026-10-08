@@ -1,0 +1,33 @@
+/* Origin-inspired composition using Vistall's existing typography and palette. */
+.vistall-home #magnetic-mouse-spotlight,.hero-ambient-glow{display:none!important}
+body{background:#faf9f7}
+.vistall-gallery-hero{isolation:isolate;max-width:none!important;min-height:760px;padding:68px max(24px,calc((100vw - 1152px)/2)) 76px!important;background:#1b1c1a;color:#f1f1ef;overflow:hidden}
+.vistall-gallery-hero>div:not(.vistall-atmosphere){position:relative;z-index:1}
+.vistall-atmosphere{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(125deg,#1b1c1a 25%,#3c2119 65%,#73533d)}
+.vistall-atmosphere canvas{width:100%;height:100%;display:block;opacity:.8}
+.vistall-atmosphere:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(27,28,26,.9),rgba(27,28,26,.52) 50%,rgba(27,28,26,.18));pointer-events:none}
+.vistall-gallery-hero .text-primary,.vistall-gallery-hero .text-on-surface{color:#f1f1ef}
+.vistall-gallery-hero .text-on-surface-variant{color:#c7c6c3}
+.vistall-gallery-hero h1{font-weight:500;line-height:1.03;letter-spacing:-.055em;font-size:clamp(48px,6.7vw,94px)}
+.vistall-gallery-hero h1 span:nth-last-child(1){color:#ffb4a1}
+.vistall-gallery-hero a[href="#contato"]{background:#f1f1ef;color:#1b1c1a;border-radius:8px;padding:15px 20px;font-size:15px}
+.vistall-gallery-hero a[href="#contato"] .absolute{display:none}
+.vistall-gallery-hero .bg-primary{background:#f1f1ef}
+.vistall-gallery-hero .hero-secondary-detail{display:none}
+.vistall-gallery-hero .hero-scope-card{background:rgba(27,28,26,.45);border-color:#f1f1ef30;border-radius:16px;padding:24px}
+.hero-scope-card .font-price-display{font-size:28px;line-height:34px}
+.hero-scope-card .flex.items-baseline{display:block}
+.hero-scope-card .text-secondary{color:#aecfb4}
+header{border-bottom:1px solid #c6c7c12b;box-shadow:none!important}
+#modelos{background:#faf9f7;backdrop-filter:none;padding-block:100px}
+#modelos .service-card-interactive{border:1px solid #e3e2e0;border-radius:24px;padding:32px;background:#ffffff;box-shadow:none!important;transition:transform .25s ease,border-color .25s ease}
+#modelos .service-card-interactive:hover{transform:translateY(-4px);border-color:#e6522a66}
+#modelos .service-card-interactive:nth-child(2){background:#efeeec}
+#modelos .service-card-interactive::before{display:none}
+#olhar{border-radius:28px;margin:0 auto 48px;width:calc(100% - 48px);max-width:1280px;background:#1b1c1a}
+#servico{padding-block:64px}
+#contato{background:#efeeec;padding-block:90px}
+#contato input,#contato textarea{border-radius:8px}
+.btn-elevate:hover{transform:translateY(-2px)}
+@media(max-width:760px){.vistall-gallery-hero{min-height:690px;padding:40px 24px 56px!important}.vistall-gallery-hero>div:first-of-type:not(.vistall-atmosphere){font-size:9px;gap:12px}.vistall-gallery-hero>div:first-of-type>div:last-child{display:none}.vistall-atmosphere:after{background:linear-gradient(90deg,rgba(27,28,26,.86),rgba(27,28,26,.55))}#modelos{padding-block:64px}#olhar{width:calc(100% - 24px);border-radius:20px}#contato{padding-block:64px}}
+@media(prefers-reduced-motion:reduce){.vistall-atmosphere canvas{display:none}.vistall-atmosphere{background:linear-gradient(125deg,#1b1c1a 25%,#3c2119 65%,#73533d)}}

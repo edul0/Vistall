@@ -1,0 +1,36 @@
+/* One motion language: short interaction feedback, slower editorial entrances. */
+:root{--motion-ease:cubic-bezier(.22,1,.36,1);--motion-fast:180ms;--motion-flow:360ms}
+.reveal-init,.reveal-visible{opacity:1;transform:none;transition:none!important;will-change:auto}
+.brand-dot-pulse,.float-indicator{animation:none!important}
+header{transition:background-color 280ms ease,box-shadow 280ms ease!important}
+header.is-scrolled{background:#faf9f7f5;box-shadow:0 4px 24px #1b1c1a08!important}
+header nav a{transition:color var(--motion-fast) ease!important}
+header a[aria-current="location"]{color:#e6522a}
+header a[aria-current="location"]::after{width:100%;background:#e6522a}
+a,button,input,textarea{ -webkit-tap-highlight-color:transparent }
+a:focus-visible,button:focus-visible{outline:2px solid #e6522a;outline-offset:5px}
+.btn-elevate,button[type="submit"],#service-selector-group button{transition:transform var(--motion-fast) var(--motion-ease),background-color var(--motion-fast) ease,border-color var(--motion-fast) ease,box-shadow var(--motion-fast) ease!important}
+.btn-elevate:hover{transform:translateY(-2px);box-shadow:0 6px 16px #1b1c1a0c}
+.btn-elevate:active,button[type="submit"]:active{transform:translateY(0) scale(.985)}
+#modelos .service-card-interactive{transition:transform var(--motion-flow) var(--motion-ease),border-color var(--motion-flow) ease,box-shadow var(--motion-flow) ease!important}
+#modelos .service-card-interactive:hover{transform:translateY(-5px);box-shadow:0 14px 32px #1b1c1a08!important}
+#modelos .service-card-interactive::after{display:none}
+#modelos .service-card-interactive h3{transition:color 240ms ease}
+#modelos .service-card-interactive:hover h3{color:#b43e20}
+.service-card-interactive a .material-symbols-outlined,footer a .material-symbols-outlined{transition:transform var(--motion-flow) var(--motion-ease)!important}
+.service-card-interactive:hover a .material-symbols-outlined{transform:translateX(3px)}
+.hero-scope-card{transition:background-color 300ms ease,border-color 300ms ease!important}
+.hero-scope-card:hover{transform:none!important;box-shadow:none!important;background:#1b1c1a88;border-color:#f1f1ef50}
+#hero-asterisk-container svg{animation:spinSlow 48s linear infinite!important;filter:none;transition:opacity 300ms ease!important}
+#hero-asterisk-container:hover svg{opacity:.7}
+#preview-stage{transition:background-color var(--motion-flow) ease!important}
+#contato input,#contato textarea{transition:border-color 200ms ease,background-color 200ms ease,box-shadow 200ms ease!important;box-shadow:none}
+#contato input:focus,#contato textarea:focus{border-color:#e6522a;box-shadow:0 0 0 3px #e6522a0b}
+#contato .group:focus-within label{color:#b43e20}
+#service-selector-group button:hover{transform:translateY(-2px)}
+#service-selector-group button:active{transform:translateY(0)}
+footer a{transition:color 200ms ease!important}
+footer a:hover{transform:none!important;color:#b43e20}
+section[id]{scroll-margin-top:100px}
+@media(hover:none){.btn-elevate:hover,#modelos .service-card-interactive:hover,#service-selector-group button:hover{transform:none;box-shadow:none!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

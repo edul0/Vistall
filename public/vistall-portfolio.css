@@ -1,0 +1,43 @@
+/* Portfolio motion shares the restrained timing and warm palette of Vistall. */
+.portfolio{--flow:cubic-bezier(.22,1,.36,1)}
+.portfolio .hero h1>span{animation:none}
+.portfolio .hero:after{display:none}
+.portfolio .hero:before{filter:blur(32px);opacity:.75;animation-duration:24s}
+.portfolio .brand-mark{width:26px;height:26px;display:block;color:var(--orange);flex:none}
+.portfolio .brand-mark line{stroke-dasharray:28;stroke-dashoffset:28;animation:spark-draw 850ms var(--flow) forwards}
+.portfolio .brand:hover .brand-mark{transform:rotate(45deg)}
+.portfolio .brand-mark{transition:transform 650ms var(--flow)}
+.portfolio .links{position:relative;isolation:isolate}
+.portfolio .links a:after{display:none}
+.portfolio .nav-marker{position:absolute;bottom:2px;left:0;height:1px;background:var(--orange);pointer-events:none;transform-origin:left;transition:transform 380ms var(--flow),width 380ms var(--flow),opacity 180ms ease}
+.portfolio .card{border-radius:16px;transition:transform 360ms var(--flow),border-color 240ms ease,background-color 240ms ease}
+.portfolio .card:before{display:none}
+.portfolio .card:hover{transform:translateY(-3px);border-color:#e6522a55;background:#fffdfa}
+.portfolio .profile-panel{border-radius:16px;box-shadow:none}
+.portfolio .button{border-radius:6px;transition:transform 200ms var(--flow),background-color 200ms ease}
+.portfolio .button:active{transform:scale(.985)}
+.portfolio .case-detail{margin-top:22px;border-top:1px solid #e2dfd8;padding-top:16px}
+.portfolio .case-detail summary{font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;color:var(--ink)}
+.portfolio .case-detail summary::-webkit-details-marker{display:none}
+.portfolio .case-detail summary:after{content:'+';font-size:20px;font-weight:400;color:var(--orange);transition:transform 260ms var(--flow)}
+.portfolio .case-detail[open] summary:after{transform:rotate(45deg)}
+.portfolio .case-detail summary:focus-visible{outline:2px solid var(--orange);outline-offset:5px}
+.portfolio .case-detail p{font-size:13px;line-height:22px;margin:16px 0 0}
+.portfolio .case-detail dt{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#b43e20;margin-top:16px}
+.portfolio .case-detail dd{font-size:13px;line-height:22px;margin:5px 0 0;color:var(--muted)}
+.portfolio .timeline{border-left:1px solid #e2dfd8}
+.portfolio .timeline article{padding-bottom:8px}
+.portfolio .timeline article:after{content:'';position:absolute;left:-26px;top:10px;bottom:-30px;width:1px;background:var(--orange);transform:scaleY(0);transform-origin:top;transition:transform 800ms var(--flow)}
+.portfolio .timeline article:last-child:after{bottom:8px}
+.portfolio .timeline article.is-traced:after{transform:scaleY(1)}
+.portfolio .timeline article:before{z-index:1;background:#c6c7c1;transition:background-color 350ms ease,box-shadow 350ms ease}
+.portfolio .timeline article.is-traced:before{background:var(--orange);box-shadow:0 0 0 4px #e6522a0c}
+.portfolio .contact-card{border-radius:12px;transition:background-color 250ms ease,border-color 250ms ease,transform 350ms var(--flow)}
+.portfolio .contact-card:hover{background:#292923;transform:translateY(-2px);border-color:#e6522a66}
+.portfolio .badge-lanyard-swing{animation:none}
+.portfolio .badge-inner{transition:transform 550ms var(--flow)}
+.portfolio .repo-link:hover{transform:none}
+.portfolio .p-reveal,.portfolio.motion-ready .p-reveal:not(.p-seen){opacity:1;transform:none;transition:none}
+@keyframes spark-draw{to{stroke-dashoffset:0}}
+@media(hover:none){.portfolio .card:hover,.portfolio .contact-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.portfolio .brand-mark line{stroke-dashoffset:0}.portfolio .timeline article:after{transform:scaleY(1)}.portfolio .nav-marker{transition:none}.portfolio .brand:hover .brand-mark{transform:none}}

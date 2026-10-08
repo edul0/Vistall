@@ -1,0 +1,6 @@
+.spark-core,.spark-orbit{transform-origin:16px 16px;transform-box:view-box}.spark-core{animation:spark-breathe 5s cubic-bezier(.45,0,.55,1) infinite}.spark-outline{stroke-dasharray:90 10;animation:spark-trace 6s linear infinite}.spark-heart{animation:spark-light 3.4s ease-in-out infinite;transform-origin:16px 16px}.spark-orbit{animation:spark-orbit 11s linear infinite}.cinema-identity{width:130px!important;height:130px!important;color:#ff895e!important;opacity:1!important;filter:drop-shadow(0 0 12px #ff500560) drop-shadow(0 0 30px #e6522a40)!important}.cinema-identity .spark-outline{stroke-width:1.2}.cinema-identity .spark-orbit{animation-duration:16s}.vistall-brand-spark,.brand-mark{overflow:visible;color:#e6522a;filter:drop-shadow(0 0 4px #e6522a30)}.vistall-brand-spark .spark-heart,.brand-mark .spark-heart{opacity:.7}.launch-mark{filter:drop-shadow(0 0 8px #e6522a40)}
+@keyframes spark-breathe{0%,100%{transform:rotate(-10deg) scale(.92)}50%{transform:rotate(15deg) scale(1.07)}}
+@keyframes spark-trace{to{stroke-dashoffset:-100}}
+@keyframes spark-light{0%,100%{opacity:.15;transform:scale(.65)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes spark-orbit{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spark-core,.spark-outline,.spark-heart,.spark-orbit{animation:none}.spark-heart{opacity:.5}}

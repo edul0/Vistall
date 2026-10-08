@@ -1,0 +1,34 @@
+main.pt-20{padding-top:0}
+header{top:24px!important;left:24px!important;right:24px!important;max-width:1152px;margin:auto;border:1px solid #ffffff18!important;border-radius:14px;background:#1b1c1a70!important;backdrop-filter:blur(22px)!important;box-shadow:none!important;transition:background-color 400ms ease,border-color 400ms ease!important}
+header>div{height:70px;padding:0 24px!important}
+header .text-primary,header .text-on-surface-variant{color:#f1f1ef}
+header nav a{font-size:12px}
+header a[data-path="contato"]{background:#f1f1ef;color:#1b1c1a;border-radius:6px;font-size:10px;padding:12px 16px;box-shadow:none}
+header.is-scrolled{background:#1b1c1abf!important;box-shadow:none!important}
+body.cinema-light-nav header{background:#faf9f7e8!important;border-color:#c6c7c150!important}
+body.cinema-light-nav header .text-primary,body.cinema-light-nav header .text-on-surface-variant{color:#1b1c1a}
+body.cinema-light-nav header a[data-path="contato"]{background:#1b1c1a;color:#faf9f7}
+.vistall-gallery-hero.cinema-hero{height:auto;min-height:100svh;padding:170px max(32px,calc((100vw - 1152px)/2)) 36px!important;display:flex;flex-direction:column;justify-content:flex-end;background:#151715}
+.cinema-hero .vistall-atmosphere{background:#151715 url('/vistall-atmosphere-poster.jpg') center/cover no-repeat}
+.cinema-video{display:block;width:100%;height:100%;object-fit:cover;opacity:.9}
+.cinema-hero .vistall-atmosphere:after{background:linear-gradient(90deg,#151715b0,transparent 75%),linear-gradient(0deg,#151715c0,transparent 60%)}
+.cinema-kicker{position:absolute!important;top:152px;left:max(32px,calc((100vw - 1152px)/2));font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c7c6c3;display:flex;gap:14px;align-items:center}
+.cinema-kicker:before{content:'';width:5px;height:5px;background:#e6522a;border-radius:50%}
+.cinema-hero .design-hero-grid{display:block;max-width:650px;margin-top:100px;margin-bottom:56px}
+.cinema-hero .design-hero-grid h1{font-size:clamp(52px,6.2vw,86px);line-height:1.04;font-weight:500;margin-bottom:22px}
+.cinema-hero .design-intro{max-width:460px;font-size:15px;line-height:25px;margin-bottom:28px}
+.cinema-hero .design-note{display:none}
+.cinema-hero .design-actions a[href="#contato"]{padding:15px 22px;background:#faf9f7;border-radius:6px}
+.cinema-hero .design-actions a:last-child{font-size:11px}
+.cinema-foot{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid #ffffff20;padding-top:22px;color:#c7c6c3;font-size:10px;letter-spacing:.04em}
+.cinema-foot span{max-width:420px}
+.cinema-pause{font:inherit;color:inherit;display:flex;gap:8px;align-items:center;border:1px solid #ffffff20;background:#ffffff05;border-radius:30px;padding:8px 13px;cursor:pointer;transition:background-color 200ms ease}
+.cinema-pause:hover{background:#ffffff12}
+.cinema-identity{position:absolute!important;right:16%;top:28%;width:90px;height:90px;color:#ffb4a1;filter:drop-shadow(0 0 18px #e6522a50);pointer-events:none;rotate:var(--cinema-turn,0deg);translate:0 var(--hero-shift,0px);opacity:.65}
+#modelos{padding-block:110px}
+#modelos h2{font-weight:500;letter-spacing:-.04em}
+#modelos .design-service{padding:36px 0}
+#contato{background:#f4f3f1}
+@media(min-width:1500px){.cinema-hero .design-hero-grid{margin-bottom:80px}}
+@media(max-width:760px){header{top:14px!important;left:14px!important;right:14px!important;border-radius:12px}header>div{height:62px;padding:0 16px!important}header .vistall-wordmark>span{font-size:24px}header a[data-path="contato"]{font-size:9px;padding:10px 12px}.vistall-gallery-hero.cinema-hero{min-height:100svh;padding:138px 24px 24px!important}.cinema-kicker{top:112px;left:24px;font-size:8px}.cinema-hero .design-hero-grid{margin-top:220px;margin-bottom:40px}.cinema-hero .design-hero-grid h1{font-size:52px}.cinema-hero .design-intro{font-size:14px;line-height:24px}.cinema-hero .vistall-atmosphere:after{background:linear-gradient(0deg,#151715 5%,#15171525 100%)}.cinema-video{object-position:65% center}.cinema-identity{top:22%;right:24%;width:64px;height:64px}.cinema-foot{align-items:start;font-size:8px}.cinema-foot span{max-width:190px}.cinema-pause{font-size:8px;white-space:nowrap}#modelos{padding-block:72px}}
+@media(prefers-reduced-motion:reduce){.cinema-identity{rotate:none;translate:none}.cinema-video{display:none}}
