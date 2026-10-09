@@ -1,0 +1,28 @@
+.v-brain-feature{position:relative;min-width:0;border:1px solid #dfb89a28;border-radius:26px;padding:18px;background:radial-gradient(ellipse at 50% 35%,#d8925a16,transparent 65%),#ffffff03;box-shadow:0 20px 60px #0002}
+.v-brain-top{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#d2bca7;font-size:8px;letter-spacing:.14em}
+.v-brain-tools{display:flex;gap:3px}.v-brain-tools button{background:transparent;color:#e6cdb4;border:1px solid #e7c4a424;min-width:32px;min-height:36px;font:15px 'Plus Jakarta Sans',sans-serif;border-radius:9px;cursor:pointer}
+.v-brain-tools button:hover{background:#e7c4a415}.v-brain-tools button[aria-pressed=true]{background:#e7c4a420}
+#portfolio-brain{display:block;width:100%;height:305px;cursor:grab;touch-action:pan-y;border-radius:12px}
+#portfolio-brain.v-dragging{cursor:grabbing}
+.v-brain-overlay{position:absolute;left:0;pointer-events:none;display:block;border-radius:12px}
+.v-brain-credit{display:block;position:absolute;right:0;bottom:-14px;color:#baaa9b;font-size:8px;text-align:right;text-decoration:underline;text-underline-offset:3px}
+.v-brain-credit[hidden]{display:none}
+.v-brain-topics button:disabled{opacity:.45;cursor:wait}
+.v-brain-hint{text-align:center;font-size:9px!important;color:#bdb0a1!important;margin:0 0 16px!important;line-height:1.6!important}
+.v-brain-topics{display:flex;gap:5px}
+.v-brain-topics button{flex:1;min-width:0;min-height:44px;padding:9px 5px;border:1px solid #d2a27a28;border-radius:10px;color:#d0bcaa;background:none;font:10px 'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:background .3s,color .3s}
+.v-brain-topics button[aria-pressed=true]{background:#ecd5bf;color:#25201b;border-color:#ecd5bf}
+.v-brain-detail{margin-top:17px;padding-top:16px;border-top:1px solid #dfb89a22;min-height:94px}
+.v-brain-detail strong{display:block;color:#f0e3d7;font-size:14px;font-weight:500;letter-spacing:-.02em}
+.v-brain-detail p{color:#c2b2a1!important;font-size:11px!important;line-height:1.75!important;margin:7px 0 0!important}
+.v-brain-feature :is(button,canvas):focus-visible{outline:2px solid #e6522a;outline-offset:4px}
+@media(max-width:1024px){.portfolio .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(320px,.9fr);gap:32px}.v-brain-top{font-size:7px;letter-spacing:.08em}#portfolio-brain{height:285px}.v-brain-topics button{font-size:9px}}
+@media(max-width:760px){.portfolio .hero-grid{grid-template-columns:1fr;gap:30px}.v-brain-feature{max-width:420px;width:100%;justify-self:center;padding:18px}.v-brain-tools button{min-width:36px;min-height:44px}#portfolio-brain{height:285px}.v-brain-topics button{font-size:10px}.v-brain-detail{min-height:80px}.v-brain-hint{font-size:10px!important}}
+/* Constellation reference: let the particles float rather than frame them as a card. */
+.v-brain-feature{border:0;background:none;box-shadow:none;border-radius:0;padding:0}
+.v-brain-top{padding:0 6px}.v-brain-tools button{border-color:#e7c4a418;background:#ffffff04}
+#portfolio-brain{height:355px}.v-brain-detail{border-top:0;padding-top:8px}.v-brain-detail strong{font-size:15px}.v-brain-detail p{font-size:12px!important}
+.v-brain-topics button{border-radius:24px;background:#ffffff05}.v-brain-topics button[aria-pressed=true]{background:#ecd5bf}
+.portfolio .hero .portfolio-film video{opacity:.15}.portfolio .hero .portfolio-film:after{background:linear-gradient(90deg,#151515c9,#15151550),linear-gradient(0deg,#151515,transparent 55%)}
+@media(max-width:760px){.v-brain-feature{padding:0;max-width:420px}#portfolio-brain{height:310px}.v-brain-hint{margin-bottom:14px!important}.v-brain-detail{min-height:80px}}
+@media(prefers-reduced-motion:reduce){.v-brain-topics button{transition:none}}

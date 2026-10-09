@@ -1,0 +1,6 @@
+BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International.
+https://dbarchive.biosciencedbc.jp/en/bodyparts3d/lic.html
+License: https://creativecommons.org/licenses/by/4.0/
+Source OBJ collection: https://github.com/ssrpw2/brain-atlas/tree/c20c30e9c4628b9d129ecf061ff8cce99f358490/brain_obj
+Adaptation for Vistall: selected cortical surfaces, cerebellum and brainstem; coordinate normalization, vertex welding, surface particle sampling and recoloring.
+This decorative presentation does not associate professional skills with neurological functions.
