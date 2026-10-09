@@ -42,7 +42,7 @@
         indices.push(a,a+1,b,a+1,b+1,b);
       }
     }
-    function finish(count,excludeOrbits=false){
+    function finish(count,meshFilter=null){
       const normals=vertices.map(()=>[0,0,0]),areas=[];
       let sum=0;
       for(let i=0;i<indices.length;i+=3){
@@ -66,7 +66,7 @@
         for(let d=0;d<3;d++){n[d]/=length;p[d]+=n[d]*.004;}
         cloud.set([...p,...n,tags[ids[0]],random()],i*8);
       }
-      const visible=excludeOrbits?indices.filter((_,i)=>tags[indices[Math.floor(i/3)*3]]<6):indices;
+      const visible=meshFilter?indices.filter((_,i)=>meshFilter(tags[indices[Math.floor(i/3)*3]])):indices;
       return {mesh,indices:new Uint16Array(visible),cloud:sortCloud(cloud)};
     }
     return {surface,finish};
@@ -82,9 +82,10 @@
     g.surface((u,v)=>{const [y,r]=section(u),phi=v*Math.PI*2;return[r*Math.cos(phi),y,r*Math.sin(phi)];},64,64,0);
     g.surface((u,v)=>{const y=-.3-u*.37,r=.235+Math.sin(u*Math.PI*12)*.022,phi=v*Math.PI*2;return[r*Math.cos(phi),y,r*Math.sin(phi)];},54,64,3);
     g.surface((u,v)=>{const phi=v*Math.PI*2,r=.21*Math.sin(u*Math.PI/2);return[r*Math.cos(phi),-.72+.04*Math.sin(u*Math.PI/2),r*Math.sin(phi)];},12,48,3);
-    // Filament placed against the inside front surface, visible as a warm zigzag.
-    g.surface((u,v)=>{const y=.39-u*.6,x=Math.sin(u*Math.PI*5)*.13,phi=v*Math.PI*2;return[x+.012*Math.cos(phi),y,.45+.012*Math.sin(phi)];},80,8,4);
-    return g.finish(32000);
+    // Center the filament within the widest part of the bulb, safely inside from every angle.
+    g.surface((u,v)=>{const y=.42-u*.37,x=Math.sin(u*Math.PI*5)*.11,phi=v*Math.PI*2;return[x+.012*Math.cos(phi),y,.012*Math.sin(phi)];},80,8,4);
+    // Keep the glass as particles so the interior remains visible; the metal base is opaque.
+    return g.finish(32000,tag=>tag>=3);
   }
   function planet(){
     const g=geometry();
@@ -95,7 +96,7 @@
       const tilt=i===1?-.45:.42,r=i===1?1.04:.9,c=[r*Math.cos(angle),-r*Math.sin(angle)*Math.sin(tilt),r*Math.sin(angle)*Math.cos(tilt)];
       g.surface((u,v)=>{const theta=u*Math.PI,phi=v*Math.PI*2;return[c[0]+.052*Math.sin(theta)*Math.cos(phi),c[1]+.052*Math.cos(theta),c[2]+.052*Math.sin(theta)*Math.sin(phi)];},12,16,8+i);
     });
-    return g.finish(32000,true);
+    return g.finish(32000,tag=>tag<6);
   }
   models[0]=lamp();models[2]=planet();model=models[0];
   const ambient=Array.from({length:26},()=>({x:random(),y:random(),phase:random()*6.28,color:palette[Math.floor(random()*palette.length)]}));
